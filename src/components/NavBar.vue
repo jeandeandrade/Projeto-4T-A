@@ -3,7 +3,7 @@
 
 <template>
     <nav class="w-[auto] h-[95px] flex-shrink-0 flex items-center justify-between px-12 navbar__styles">
-        
+
         <div class="flex items-center ml-12">
             <img src="../assets/images/logo.svg" alt="Logo" class="h-12 navbar__logo">
         </div>
@@ -25,7 +25,6 @@
 
 
 <style scoped>
-
 .navbar__styles {
     border: 1px solid rgba(217, 217, 227, 0.60);
     background: #FFF;
