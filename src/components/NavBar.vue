@@ -4,7 +4,7 @@
 <template>
     <nav class="w-[auto] h-[95px] flex-shrink-0 flex items-center justify-between px-12 navbar__styles">
 
-        <div class="flex items-center ml-12">
+        <div class="flex items-center navbar__logo">
             <img src="../assets/images/logo.svg" alt="Logo" class="h-12 navbar__logo">
         </div>
 
@@ -16,7 +16,7 @@
             <li class="items"><a href="#" class="hover:text-blue-600">SUPPORT</a></li>
         </ul>
 
-        <div class="flex items-center space-x-4 mr-12">
+        <div class="flex items-center space-x-4 items__nav__signin__signup">
             <a href="#" class="hover:text-blue-600 items__nav__sign">SIGN IN</a>
             <a href="#" class="text-white py-2 px-4 items__nav__signup">SIGN UP FOR FREE</a>
         </div>
@@ -25,6 +25,15 @@
 
 
 <style scoped>
+
+.navbar__logo {
+    margin-left: 9.1%;
+}
+
+.items__nav__signin__signup {
+    margin-right: 9.1%;
+}
+
 .navbar__styles {
     border: 1px solid rgba(217, 217, 227, 0.60);
     background: #FFF;
