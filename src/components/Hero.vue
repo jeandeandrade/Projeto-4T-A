@@ -6,7 +6,7 @@
 
         <section class="mt-[95px]  container mx-auto px-12 grid grid-cols-2 gap-6 relative z-10">
 
-            <div class="col-span-1 mb-5">
+            <div class="col-span-1 mb-5 hero__text__column">
 
                 <div class="hero__text mb-16">
                     <h1 class="hero__text__h1">GABINI HEADSET STORE</h1>
@@ -62,7 +62,7 @@
 
             </div>
 
-            <div class="col-span-1">
+            <div class="col-span-1 hero__column">
 
                 <div class="hero__image__card">
 
@@ -157,7 +157,6 @@
 </template>
 
 <style scoped>
-
 .line__promo__text {
     position: absolute;
     width: 4112px;
@@ -442,4 +441,88 @@ section {
     align-items: flex-start;
     gap: 0.25rem;
 }
+
+@media only screen and (max-width: 480px) {
+
+    .line__promo__text,
+    .line__promo__text__2 {
+        display: none;
+    }
+
+    .hero__column {
+        display: none;
+    }
+
+    .hero__text__column {
+        margin: auto;
+    }
+
+    .hero__text__h1 {
+        font-size: 75px;
+        text-align: justify;
+    }
+}
+
+
+@media only screen and (min-width: 481px) and (max-width: 767px) {
+    .hero__column {
+        display: none;
+    }
+
+    .hero__text__column {
+        margin: auto;
+    }
+
+    .hero__text__h1 {
+        font-size: 80px;
+        text-align: justify;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+    .hero__column {
+        display: none;
+    }
+
+    .hero__text__column {
+        margin: auto;
+    }
+
+    .hero__text__h1 {
+        font-size: 80px;
+        text-align: justify;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+    .hero__column {
+        display: none;
+    }
+
+    .hero__text__column {
+        margin: auto;
+    }
+
+    .hero__text__h1 {
+        font-size: 80px;
+        text-align: justify;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+    .hero__column {
+        display: none;
+    }
+
+    .hero__text__column {
+        margin: auto;
+    }
+
+    .hero__text__h1 {
+        font-size: 80px;
+        text-align: justify;
+    }
+}
+
+
 </style>
