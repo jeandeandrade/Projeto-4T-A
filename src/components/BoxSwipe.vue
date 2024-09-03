@@ -1,7 +1,7 @@
 <script setup></script>
 
 <template>
-  <div class="font-bold text-3xl justify-center text-center gap-10">
+  <div class="font-bold text-3xl justify-center text-center gap-10 bg-neutral-50">
     <h1>TESTIMONIALS</h1>
     <h2 class="text-sm text-neutral-300 mt-2">
       Voices of Satisfaction: Discover What Our Clients Have to Say
@@ -12,7 +12,7 @@
           <svg
             v-for="star in 5"
             :key="star"
-            class="w-6 h-6 text-yellow-400"
+            class="w-6 h-6 text-orange-400"
             fill="currentColor"
             viewBox="0 0 20 20"
             xmlns="http://www.w3.org/2000/svg"
@@ -43,7 +43,7 @@
           <svg
             v-for="star in 5"
             :key="star"
-            class="w-6 h-6 text-yellow-400"
+            class="w-6 h-6 text-orange-400"
             fill="currentColor"
             viewBox="0 0 20 20"
             xmlns="http://www.w3.org/2000/svg"
@@ -74,7 +74,7 @@
           <svg
             v-for="star in 5"
             :key="star"
-            class="w-6 h-6 text-yellow-400"
+            class="w-6 h-6 text-orange-400"
             fill="currentColor"
             viewBox="0 0 20 20"
             xmlns="http://www.w3.org/2000/svg"
@@ -100,6 +100,20 @@
           <p class="text-neutral-400 text-sm">CEO, Mayura</p>
         </div>
       </div>
+    </div>
+    <div class="flex flex-row items-center justify-center gap-2">
+      <button>
+      <img
+        src="../assets/icons/arrow-left.svg"
+        alt="Arrow"
+        class="inline-block px-2 py-2 bg-white border-2 text-neutral-300 border-gray-300 rounded-full"
+        />
+      </button>
+      <img
+        src="../assets/icons/icon-arrow-right.svg"
+        alt="Arrow"
+        class="inline-block px-2 py-2 bg-black rounded-full"
+        />
     </div>
   </div>
 </template>
