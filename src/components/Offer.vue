@@ -93,7 +93,7 @@ function updateCountdown() {
         <div class="timer__offer">
             <p>SECONDS</p>
         </div>
-        <img src="C:\Users\Aula\Desktop\Projeto-4T-A\src\assets\images\offer_fone.png" alt="">
+        <img src="../assets/images/offer_fone.png" alt="">
     </div>
 </template>
 

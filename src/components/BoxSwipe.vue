@@ -1,7 +1,7 @@
 <script setup></script>
 
 <template>
-  <div class="font-bold text-3xl justify-center text-center gap-10 bg-neutral-50">
+  <div class="font-bold text-3xl justify-center text-center gap-10">
     <h1>TESTIMONIALS</h1>
     <h2 class="text-sm text-neutral-300 mt-2">
       Voices of Satisfaction: Discover What Our Clients Have to Say
@@ -101,7 +101,7 @@
         </div>
       </div>
     </div>
-    <div class="flex flex-row items-center justify-center gap-2">
+    <div class="flex flex-row items-center justify-center gap-2 mb-10">
       <button>
       <img
         src="../assets/icons/arrow-left.svg"
