@@ -86,7 +86,7 @@
       </div>
     </section>
 
-    <div class="line__promo__text">
+    <!-- <div class="line__promo__text">
       <div class="marquee">
         <div class="marquee">
           <span class="marque___text">
@@ -121,9 +121,9 @@
           </span>
         </div>
       </div>
-    </div>
+    </div> -->
 
-    <div class="line__promo__text__2">
+    <!-- <div class="line__promo__text__2"> -->
       <div class="marquee__2">
         <div class="marquee__2">
           <span class="marque___text">
@@ -158,7 +158,7 @@
           </span>
         </div>
       </div>
-    </div>
+    <!-- </div> -->
   </div>
 </template>
 
@@ -427,6 +427,9 @@ section {
 #warranty {
   top: 27%;
   left: 55%;
+  border-radius: 60px;
+  background: var(--White-white-50, #FFF);
+  box-shadow: 1px 0px 1px 1px #E2D8EF;
 }
 
 .hero__battery__info {
