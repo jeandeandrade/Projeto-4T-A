@@ -25,6 +25,7 @@ function toggleDropdown() {
 
         <div class="flex items-center space-x-4 items__nav__signin__signup hidden lg:flex">
             <a href="#" class="hover:text-blue-600 items__nav__sign">SIGN IN</a>
+            <div class="text__sign__signup">&nbsp;</div>
             <a href="#" class="text-white py-2 px-4 items__nav__signup">SIGN UP FOR FREE</a>
         </div>
 
@@ -127,6 +128,11 @@ function toggleDropdown() {
     gap: 16px;
 }
 
+.text__sign__signup {
+    background: #E6E6E6;
+    width: 1px;
+height: 20px;
+}
 /* Ajustes de responsividade */
 @media only screen and (max-width: 1024px) {
     .navbar__logo {
