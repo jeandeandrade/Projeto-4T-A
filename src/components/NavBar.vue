@@ -30,7 +30,8 @@ function toggleDropdown() {
         </div>
 
         <button @click="toggleDropdown" class="block lg:hidden">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
             </svg>
         </button>
@@ -120,6 +121,7 @@ function toggleDropdown() {
     background-color: #FFF;
     border: 1px solid rgba(217, 217, 227, 0.60);
     padding: 16px;
+    transition: 3s ease-out;
 }
 
 .dropdown__items {
@@ -131,8 +133,9 @@ function toggleDropdown() {
 .text__sign__signup {
     background: #E6E6E6;
     width: 1px;
-height: 20px;
+    height: 20px;
 }
+
 /* Ajustes de responsividade */
 @media only screen and (max-width: 1024px) {
     .navbar__logo {
@@ -150,6 +153,39 @@ height: 20px;
         display: none;
     }
 
+    /* https://renatello.com/vuejs-free-hosting/ */
 
 }
+
+@media only screen and (min-width: 481px) and (max-width: 767px) {
+    
+    .items__menu {
+        display: none;
+    }
+
+}
+
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+    .items__menu {
+        display: none;
+    }
+
+    .dropdown__menu {
+        width: 70%;
+    }
+
+    .navbar__styles {
+        width: 70%;
+    }
+
+}
+
+@media only screen and (min-width: 820px) and (max-width: 1180px) {
+
+    .navbar__styles {
+        width: 100%;
+    }
+}
+
 </style>
