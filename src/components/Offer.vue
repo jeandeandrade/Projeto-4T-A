@@ -1,60 +1,41 @@
 <script setup>
-const numberHeight = 80;
+import { ref, onMounted, onBeforeUnmount, computed } from 'vue';
 
-document.addEventListener("DOMContentLoaded", () => {
-    createNumberElements(document.getElementById('hours-container'), 23);
-    createNumberElements(document.getElementById('minutes-container'), 59);
-    createNumberElements(document.getElementById('seconds-container'), 59);
+const props = defineProps({
+  endDate: {
+    type: String,
+    required: true
+  }
+});
 
-    const interval = setInterval(updateCountdown, 1000);
-    updateCountdown();  
-})
+const timeRemaining = ref({});
+const interval = ref(null);
 
-function createNumberElements(container, maxNumber) {
-    for (let i = 0; i <= maxNumber; i++) {
-        const numberElement = document.createElement('div');
-        numberElement.className = 'number__offer';
-        numberElement.textContent = i.toString().padStart(2, '0');
-        container.appendChild(numberElement);
-    }
-}
+const updateTimer = () => {
+  const now = new Date().getTime();
+  const endTime = new Date(props.endDate).getTime();
+  const distance = endTime - now;
 
-function updateCountdown() {
-    const countDownDate = new Date("Sep 5, 2024 22:30:00").getTime();
-    const now = new Date().getTime();
-    const distance = countDownDate - now;
+  if (distance < 0) {
+    clearInterval(interval.value);
+    timeRemaining.value = { total: 0 };
+  } else {
+    timeRemaining.value = { total: distance };
+  }
+};
 
-    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+const hours = computed(() => Math.floor((timeRemaining.value.total % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
+const minutes = computed(() => Math.floor((timeRemaining.value.total % (1000 * 60 * 60)) / (1000 * 60)));
+const seconds = computed(() => Math.floor((timeRemaining.value.total % (1000 * 60)) / 1000));
 
-    function updateElement(containerId, value) {
-        const container = document.getElementById(containerId);
-        const children = Array.from(container.children);
-        const visibleIndex = value % children.length;
+onMounted(() => {
+  updateTimer();
+  interval.value = setInterval(updateTimer, 1000);
+});
 
-        children.forEach((child, index) => {
-            if (index === visibleIndex) {
-                child.classList.remove('fade-out');
-                child.classList.add('visible');
-            } else {
-                child.classList.add('fade-out');
-                child.classList.remove('visible');
-            }
-        });
-
-        container.style.transform = `translateY(-${visibleIndex * numberHeight}px)`;
-    }
-
-    updateElement('hours-container', hours);
-    updateElement('minutes-container', minutes);
-    updateElement('seconds-container', seconds);
-
-    if (distance < 0) {
-        clearInterval(interval);
-        document.querySelector('.timer').innerHTML = "EXPIRED";
-    }
-}
+onBeforeUnmount(() => {
+  clearInterval(interval.value);
+});
 
 </script>
 
@@ -65,17 +46,19 @@ function updateCountdown() {
             <h3>Enjoy for a limited time</h3>
         </div>
         <br>
-        <div class="timer__offer">
-            <div class="number__container__offer" id="hours-container"></div>
-            <p>HOURS</p>
-        </div>
-        <div class="timer__offer">
-            <div class="number__container__offer" id="minutes-container"></div>
-            <p>MINUTES</p>
-        </div>
-        <div class="timer__offer">
-            <div class="number__container__offer" id="seconds-container"></div>
-            <p>SECONDS</p>
+        <div class="timer">
+            <div class="timer__offer">
+                <div class="number__container__offer number__offer" id="hours-container">{{ hours.toString().padStart(2, '0') }}</div>
+                <p>HOURS</p>
+            </div>
+            <div class="timer__offer">
+                <div class="number__container__offer number__offer" id="minutes-container"> {{ minutes.toString().padStart(2, '0') }}</div>
+                <p>MINUTES</p>
+            </div>
+            <div class="timer__offer">
+                <div class="number__container__offer number__offer" id="seconds-container">{{ seconds.toString().padStart(2, '0') }}</div>
+                <p>SECONDS</p>
+            </div>
         </div>
         <br><br><br>
             <button class="offer__button flex items-center">
@@ -121,11 +104,18 @@ function updateCountdown() {
     color: #e6e6e6;
 }
 
+.timer{
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+}
+
 .timer__offer {
-    display: inline-block;
+    width: 120px;
+    display: flex;
     text-align: center;
     overflow: hidden;
-    margin-right: 40px;
+    flex-direction: column;
 }
 
 .timer__offer p{
@@ -133,24 +123,14 @@ function updateCountdown() {
 }
 
 .number__container__offer {
-    height: 140px;
-    width: 160px;
+    height: fit-content;
     flex-direction: column;
     transition: transform 0.7s ease-in-out;
 }
 
 .number__offer {
-    height: 80px;
-    font-size: 8em;
-    transition: opacity 0.2s ease-in-out;
-}
-
-.number__offer.fade-out {
-    opacity: 0;
-}
-
-.number__offer.visible {
-    opacity: 1;
+    transition: transform 0.3s ease-in-out;
+    font-size: 6em;
 }
 
 .offer__button{
@@ -186,10 +166,6 @@ function updateCountdown() {
     }
     .number__offer{
         font-size: 6em;
-    }
-    .number__container__offer{
-        height: 110px;
-        width: 120px;
     }
 }
 </style>
