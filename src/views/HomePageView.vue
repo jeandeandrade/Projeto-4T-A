@@ -11,8 +11,8 @@ import NewProducts from '@/components/NewProducts.vue';
   <main>
     <NavBar />
     <Hero />
+    <Offer end-date="2024-12-31T23:59:59" />
     <NewProducts/>
-    <Offer />
     <BoxSwipe />
     <FooterHome />
   </main>
