@@ -1,10 +1,8 @@
 <script setup></script>
 
-<template>
+<template class="hero__principal__div">
   <div class="relative overflow-hidden">
-    <section
-      class="mt-[95px] container mx-auto px-12 grid grid-cols-2 gap-6 relative z-10"
-    >
+    <section class="mt-[95px] container mx-auto px-12 grid grid-cols-2 gap-6 relative z-10">
       <div class="col-span-1 mb-5 hero__text__column">
         <div class="hero__text mb-16">
           <h1 class="hero__text__h1">GABINI HEADSET STORE</h1>
@@ -25,11 +23,7 @@
               <button class="hero__button__style flex items-center">
                 SEE MORE DETAILS
                 <span class="hero__button__icon ml-2">
-                  <img
-                    src="../assets/icons/icon-arrow-right.svg"
-                    alt="Arrow"
-                    class="inline-block w-6 h-6"
-                  />
+                  <img src="../assets/icons/icon-arrow-right.svg" alt="Arrow" class="inline-block w-6 h-6" />
                 </span>
               </button>
             </div>
@@ -38,16 +32,10 @@
               <div class="hero__rating__stars mr-12">
                 <div class="flex items-center">
                   <span class="hero__rating__stars__text">4.8</span>
-                  <img
-                    src="../assets/icons/stars.svg"
-                    alt="Stars rating"
-                    class="ml-2 w-30 h-30"
-                  />
+                  <img src="../assets/icons/stars.svg" alt="Stars rating" class="ml-2 w-30 h-30 hero__rating__stars__icon" />
                 </div>
 
-                <span class="hero__rating__stars__text__muted"
-                  >2,290 ratings</span
-                >
+                <span class="hero__rating__stars__text__muted">2,290 ratings</span>
               </div>
 
               <div class="hero__rating__2">
@@ -124,40 +112,40 @@
     </div> -->
 
     <!-- <div class="line__promo__text__2"> -->
+    <!-- <div class="marquee__2">
       <div class="marquee__2">
-        <div class="marquee__2">
-          <span class="marque___text">
-            YOUR TEXT HERE &nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT HERE
-            &nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT HERE &nbsp;&nbsp;*&nbsp;&nbsp;
-            YOUR TEXT HERE &nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
-            HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
-            HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
-            HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
-            HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
-            HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
-            HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
-            HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
-            HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
-            HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
-            HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
-            HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
-            HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
-            HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
-            HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
-            HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
-            HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
-            HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
-            HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
-            HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
-            HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
-            HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
-            HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
-            HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
-            HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
-            HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT HERE
-          </span>
-        </div>
+        <span class="marque___text">
+          YOUR TEXT HERE &nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT HERE
+          &nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT HERE &nbsp;&nbsp;*&nbsp;&nbsp;
+          YOUR TEXT HERE &nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
+          HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
+          HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
+          HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
+          HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
+          HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
+          HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
+          HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
+          HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
+          HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
+          HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
+          HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
+          HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
+          HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
+          HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
+          HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
+          HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
+          HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
+          HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
+          HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
+          HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
+          HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
+          HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
+          HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
+          HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
+          HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT HERE
+        </span>
       </div>
+    </div> -->
     <!-- </div> -->
   </div>
 </template>
@@ -449,6 +437,7 @@ section {
 }
 
 @media only screen and (max-width: 480px) {
+
   .line__promo__text,
   .line__promo__text__2 {
     display: none;
@@ -463,9 +452,27 @@ section {
   }
 
   .hero__text__h1 {
-    font-size: 75px;
+    font-size: 70px;
     text-align: justify;
   }
+
+  .hero__subtitle__p {
+    font-size: 30px;
+  }
+
+  .hero__rating__stars {
+    padding: 3px;
+  }
+
+  .hero__rating__stars__icon {
+    width: 80%;
+  }
+
+  .hero__rating__text {
+    font-size: 30px;
+    margin-top: 15% !important;
+  }
+
 }
 
 @media only screen and (min-width: 481px) and (max-width: 767px) {
@@ -484,6 +491,7 @@ section {
 }
 
 @media only screen and (min-width: 768px) and (max-width: 1024px) {
+
   .hero__column {
     display: none;
   }
@@ -496,6 +504,7 @@ section {
     font-size: 80px;
     text-align: justify;
   }
+
 }
 
 @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
@@ -526,5 +535,38 @@ section {
     font-size: 80px;
     text-align: justify;
   }
+
+  #battery {
+    bottom: 3%;
+    left: 4%;
+  }
+
 }
+
+@media only screen and (min-width: 820px) and (max-width: 1180px) {
+
+  .hero__text__h1 {
+    width: 400px;
+    font-size: 90px;
+    text-align: justify;
+  }
+
+  .hero__subtitle__p {
+    font-size: 30px;
+  }
+
+  .hero__rating__stars {
+    padding: 3px;
+  }
+
+  .hero__rating__stars__icon {
+    width: 80%;
+  }
+
+  .hero__rating__text {
+    font-size: 30px;
+    margin-top: 15% !important;
+  }
+}
+
 </style>
