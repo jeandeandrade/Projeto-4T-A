@@ -36,136 +36,226 @@ onMounted(() => {
 onBeforeUnmount(() => {
   clearInterval(interval.value);
 });
-
 </script>
 
 <template>
-    <div class="offer columns-2"> 
-        <div class="desconto__offer">
-            <h1>Save 20% or more on Headset</h1>
-            <h3>Enjoy for a limited time</h3>
-        </div>
-        <br>
-        <div class="timer">
-            <div class="timer__offer">
-                <div class="number__container__offer number__offer" id="hours-container">{{ hours.toString().padStart(2, '0') }}</div>
-                <p>HOURS</p>
-            </div>
-            <div class="timer__offer">
-                <div class="number__container__offer number__offer" id="minutes-container"> {{ minutes.toString().padStart(2, '0') }}</div>
-                <p>MINUTES</p>
-            </div>
-            <div class="timer__offer">
-                <div class="number__container__offer number__offer" id="seconds-container">{{ seconds.toString().padStart(2, '0') }}</div>
-                <p>SECONDS</p>
-            </div>
-        </div>
-        <br><br><br>
-            <button class="offer__button flex items-center">
-                <b>SHOP NOW </b>
-                <span class="ml-2">
-                    <img src="../assets/icons/icon-arrow-right.svg" alt="Arrow"
-                        class="inline-block w-6 h-6">
-                </span>
-            </button>
-            <br>
-            <p class="text-[#e6e6e6] flex-initial">Ends 18/08. Restrictions apply. See details</p>
-        <div class="offer__fone">
-            <img class="mt-10" src="../assets/images/offer_fone.png" alt="">
-        </div>
+  <div class="offer columns-2"> 
+    <div class="desconto__offer">
+      <h1>Save 20% or more on Headset</h1>
+      <h3>Enjoy for a limited time</h3>
     </div>
+    <div class="timer">
+      <div class="timer__offer">
+        <transition-group name="flip" tag="div" class="number__container__offer">
+          <div class="number__offer" :key="hours">{{ hours.toString().padStart(2, '0') }}</div>
+        </transition-group>
+        <p>HOURS</p>
+      </div>
+      <div class="timer__offer">
+        <transition-group name="flip" tag="div" class="number__container__offer">
+          <div class="number__offer" :key="minutes">{{ minutes.toString().padStart(2, '0') }}</div>
+        </transition-group>
+        <p>MINUTES</p>
+      </div>
+      <div class="timer__offer">
+        <transition-group name="flip" tag="div" class="number__container__offer">
+          <div class="number__offer" :key="seconds">{{ seconds.toString().padStart(2, '0') }}</div>
+        </transition-group>
+        <p>SECONDS</p>
+      </div>
+    </div>
+    <div class="offer__button">
+      <button class="flex items-center">
+        <b>SHOP NOW </b>
+        <span>
+          <img src="../assets/icons/icon-arrow-right.svg" alt="Arrow" class="inline-block w-6 h-6">
+        </span>
+      </button>
+      <p class="text-[#e6e6e6]">Ends 18/08. Restrictions apply. See details</p>
+    </div>
+    <div class="offer__fone">
+      <img src="../assets/images/offer_fone.png" alt="">
+    </div>
+  </div>
 </template>
 
-<style>
+<style scoped>
 .offer {
-    font-family: 'Inter', sans-serif;
-    line-height: normal;
-    color: rgb(255, 255, 255);
-    border-radius: 1.5rem;
-    padding: 40px 90px;
-    padding-bottom: 60px;
-    margin-left: 30px;
-    margin-right: 30px;
-    margin-top: 50px;
-    margin-bottom: 50px;
-    background-image: linear-gradient(to bottom right, #548CAD,  #97C4D8);
+  font-family: 'Inter', sans-serif;
+  line-height: normal;
+  color: rgb(255, 255, 255);
+  border-radius: 1.5rem;
+  padding: 40px 90px;
+  padding-bottom: 60px;
+  margin-left: 30px;
+  margin-right: 30px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  background-image: linear-gradient(to bottom right, #548CAD, #97C4D8);
 }
 
-.desconto__offer{
-    font-weight: 600;
+.desconto__offer {
+  font-weight: 600;
 }
 
-.desconto__offer h1{
-    font-size: 5em;
+.desconto__offer h1 {
+  font-size: 4.5em;
 }
 
-.desconto__offer h3{
-    font-size: 1.2em;
-    color: #e6e6e6;
+.desconto__offer h3 {
+  font-size: 1.2em;
+  color: #e6e6e6;
 }
 
-.timer{
-    display: flex;
-    flex-direction: row;
-    gap: 15px;
+.timer {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
 }
 
 .timer__offer {
-    width: 120px;
-    display: flex;
-    text-align: center;
-    overflow: hidden;
-    flex-direction: column;
-}
-
-.timer__offer p{
-    margin: 0;
+  width: 120px;
+  display: flex;
+  text-align: center;
+  overflow: hidden;
+  flex-direction: column;
 }
 
 .number__container__offer {
-    height: fit-content;
-    flex-direction: column;
-    transition: transform 0.7s ease-in-out;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
 }
 
 .number__offer {
-    transition: transform 0.3s ease-in-out;
-    font-size: 6em;
+  font-weight: 450;
+  font-size: 6em;
+  position: absolute;
 }
 
-.offer__button{
-    display: flex;
-    align-items: center;
-    background-color: white;
-    color: black;
-    padding: 7px 7px 7px 25px;
-    border-radius: 30cap;
-    transition: transform 1s;
+.flip-enter-active, .flip-leave-active {
+  transition: transform 0.6s ease, opacity 0.6s ease;
 }
 
-.offer__button:hover{
-    transform: scale(1.1);
+.flip-enter-from {
+  transform: translateY(100%);
+  opacity: 0;
 }
 
-.offer__button span{
-    background-color: black;
-    border-radius: 100%;
-    padding: 10px;
-    margin-left: 30px;
+.flip-enter-to {
+  transform: translateY(0);
+  opacity: 1;
 }
 
-@media only screen and (min-width: 768px) and (max-width: 1024px) {
-    .offer__fone {
-        display: none;
-    }
-    .desconto__offer h1{
-        font-size: 4em;
-    }
-    .timer__offer{
-        margin-right: 10px;
-    }
-    .number__offer{
-        font-size: 6em;
-    }
+.flip-leave-from {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.flip-leave-to {
+  transform: translateY(-100%);
+  opacity: 0;
+}
+
+.offer__button {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.offer__button button {
+  align-items: center;
+  background-color: white;
+  color: black;
+  padding: 7px 7px 7px 25px;
+  border-radius: 30cap;
+  transition: transform 1s;
+}
+
+.offer__button button:hover {
+  transform: scale(1.1);
+}
+
+.offer__button span {
+  background-color: black;
+  border-radius: 100%;
+  padding: 10px;
+  margin-left: 30px;
+}
+
+.offer__fone {
+  display: flex;
+  text-align: center;
+}
+
+@media only screen and (min-width: 920px) and (max-width: 1024px) {
+  .offer__fone {
+    display: none;
+  }
+  .desconto__offer h1 {
+    font-size: 4em;
+  }
+  .desconto__offer h3 {
+    font-size: 1em;
+  }
+  .number__offer {
+    font-size: 5em;
+  }
+  .offer__button{
+      font-size: 1em;
+  }
+}
+
+@media only screen and (min-width: 790px) and (max-width: 920px) {
+  .offer__fone {
+    display: none;
+  }
+  .desconto__offer h1 {
+    font-size: 3em;
+  }
+  .desconto__offer h3 {
+    font-size: 1em;
+  }
+  .number__container__offer{
+      height: 80px;
+  }
+  .number__offer {
+    font-size: 4em;
+  }
+  .offer__button{
+      font-size: 1em;
+  }
+}
+
+@media only screen and (min-width: 0px) and (max-width: 790px) {
+  .offer {
+    padding: 15px;
+  }
+  .columns-2 {
+    columns: 1;
+  }
+  .offer__fone {
+    display: none;
+  }
+  .desconto__offer h1 {
+    font-size: 2.7em;
+  }
+  .desconto__offer h3 {
+    font-size: 0.7em;
+  }
+  .number__container__offer{
+      height: 80px;
+  }
+  .number__offer {
+    font-size: 4em;
+  }
+  .offer__button{
+      font-size: 0.7em;
+  }
 }
 </style>
