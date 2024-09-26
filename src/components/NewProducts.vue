@@ -2,7 +2,7 @@
 
 <template>
   <main
-    class="main__content max-w-[1400px] h-auto ml-[16px] lg:ml-[119px] shrink-0 bg-[#F3F5F9] rounded-[30px]"
+    class="main__content h-auto ml-[16px] lg:ml-[119px] shrink-0 bg-[#F3F5F9] rounded-[30px]"
   >
     <section
       class="content__products flex flex-col items-center gap-[40px] lg:gap-[80px] p-4 lg:p-0"
@@ -151,7 +151,9 @@
 .main__content {
   padding: 50px;
   padding-top: 80px;
-  margin: 10px 100px 50px 100px;
+  margin-bottom: 4%;
+  width: 97%;
+  margin-left: 31px;
 }
 
 .showcase__container {
