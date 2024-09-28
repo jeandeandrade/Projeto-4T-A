@@ -105,6 +105,9 @@
   margin-bottom: 4%;
   width: 97%;
   margin-left: 31px;
+  margin-bottom: 4%;
+  width: 97%;
+  margin-left: 31px;
 }
 
 .showcase__container {
