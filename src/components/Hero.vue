@@ -1,8 +1,23 @@
-<script setup></script>
+<script setup>
+import { ref } from 'vue';
+
+const repeatText = ref(Array(30).fill('your text here &#10022;').join(' '));
+</script>
 
 <template class="hero__principal__div">
   <div class="relative overflow-hidden">
     <section class="mt-[95px] container mx-auto px-12 grid grid-cols-2 gap-6 relative z-10">
+
+      <div class="line1">
+          <div class="line-text">
+            <p v-html="repeatText"></p>
+          </div>
+        </div>
+        <div class="line2">
+          <div class="line-text">
+            <p v-html="repeatText"></p>
+          </div>
+        </div>
       <div class="col-span-1 mb-5 hero__text__column">
         <div class="hero__text mb-16">
           <h1 class="hero__text__h1">GABINI HEADSET STORE</h1>
@@ -32,7 +47,8 @@
               <div class="hero__rating__stars mr-12">
                 <div class="flex items-center">
                   <span class="hero__rating__stars__text">4.8</span>
-                  <img src="../assets/icons/stars.svg" alt="Stars rating" class="ml-2 w-30 h-30 hero__rating__stars__icon" />
+                  <img src="../assets/icons/stars.svg" alt="Stars rating"
+                    class="ml-2 w-30 h-30 hero__rating__stars__icon" />
                 </div>
 
                 <span class="hero__rating__stars__text__muted">2,290 ratings</span>
@@ -73,123 +89,59 @@
         </div>
       </div>
     </section>
-
-    <!-- <div class="line__promo__text">
-      <div class="marquee">
-        <div class="marquee">
-          <span class="marque___text">
-            YOUR TEXT HERE &nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT HERE
-            &nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT HERE &nbsp;&nbsp;*&nbsp;&nbsp;
-            YOUR TEXT HERE &nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
-            HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
-            HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
-            HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
-            HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
-            HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
-            HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
-            HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
-            HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
-            HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
-            HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
-            HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
-            HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
-            HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
-            HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
-            HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
-            HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
-            HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
-            HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
-            HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
-            HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
-            HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
-            HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
-            HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
-            HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
-            HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT HERE
-          </span>
-        </div>
-      </div>
-    </div> -->
-
-    <!-- <div class="line__promo__text__2"> -->
-    <!-- <div class="marquee__2">
-      <div class="marquee__2">
-        <span class="marque___text">
-          YOUR TEXT HERE &nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT HERE
-          &nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT HERE &nbsp;&nbsp;*&nbsp;&nbsp;
-          YOUR TEXT HERE &nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
-          HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
-          HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
-          HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
-          HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
-          HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
-          HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
-          HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
-          HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
-          HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
-          HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
-          HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
-          HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
-          HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
-          HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
-          HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
-          HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
-          HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
-          HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
-          HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
-          HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
-          HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
-          HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
-          HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
-          HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT
-          HERE&nbsp;&nbsp;*&nbsp;&nbsp; YOUR TEXT HERE
-        </span>
-      </div>
-    </div> -->
-    <!-- </div> -->
   </div>
 </template>
 
 <style scoped>
-.line__promo__text {
+
+.line1 {
   position: absolute;
-  width: 4112px;
-  height: 46px;
-  transform: rotate(27.807deg);
-  padding: 7px 0px;
-  background: var(--Black-black-500, #000);
-  z-index: -1;
-  top: 94%;
-}
-
-.line__promo__text__2 {
-  position: fixed;
-  width: 2030px;
-  height: 46px;
-  transform: rotate(-29.185deg);
-  padding: 7px 0px;
-  background: var(--Black-black-500, #000);
-  z-index: -1;
-  top: 89%;
-}
-
-.relative {
-  position: relative;
-  overflow: hidden;
-}
-
-.marquee {
-  display: inline-block;
-  white-space: nowrap;
-  animation: marquee 1000s linear infinite;
+  width: 100%;
+  height: 50px;
+  background-color: #000000;
+  transform: rotate(30deg);
+  top: 270px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+  font-weight: 200;
+  right: -28%;
+  font-size: 0.73vw;
   color: white;
-  font-size: 1.5rem;
-  font-family: "Inter", sans-serif;
+  z-index: -1;
 }
 
-@keyframes marquee {
-  10% {
-    transform: translateX(25%);
+.line2 {
+  position: absolute;
+  width: 50%;
+  height: 50px;
+  background-color: #000000;
+  transform: rotate(-28deg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+  font-weight: 200;
+  right: -32%;
+  bottom: 395px;
+  font-size: 0.73vw;
+  color: white;
+}
+
+.line-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+  font-weight: 200;
+  animation: moveLeftRight 30s linear infinite;
+  white-space: nowrap;
+}
+
+@keyframes moveLeftRight {
+  0% {
+    transform: translateX(0);
   }
 
   100% {
@@ -197,28 +149,39 @@
   }
 }
 
-.marquee__2 {
-  display: inline-block;
-  white-space: nowrap;
-  animation: marquee 1000s linear infinite;
-  color: white;
-  font-size: 1.5rem;
-  font-family: "Inter", sans-serif;
-}
+@keyframes moveLeftRight {
+  0% {
+    transform: translateX(0);
+  }
 
-@keyframes marquee__2 {
-  10% {
-    transform: translateX(1%);
+  25% {
+    transform: translateX(-100vw);
+  }
+
+  75% {
+    transform: translateX(100vw);
   }
 
   100% {
-    transform: translateX(-100%);
+    transform: translateX(0);
   }
 }
 
-.marquee__text {
-  color: var(--White-white-50, #fff);
-  font-family: "Inter", sans-serif;
+.line-text2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+  font-weight: 200;
+  animation: moveRightLeft 40s ease-in-out infinite;
+  white-space: nowrap;
+}
+
+.line-text2,
+.line-text p {
+  margin: 0px 30px 0px 30px;
+  color: var(--White-white-50, #FFF);
+  font-family: 'Inter', sans-serif;
   font-size: 12px;
   font-style: normal;
   font-weight: 400;
@@ -227,10 +190,32 @@
   text-transform: uppercase;
 }
 
-.marquee__icon {
-  width: 10px;
-  height: 10px;
-  fill: var(--White-white-50, #fff);
+
+@keyframes moveRightLeft {
+  0% {
+    transform: translateX(0);
+  }
+
+  25% {
+    transform: translateX(100vw);
+  }
+
+  75% {
+    transform: translateX(-100vw);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+
+
+
+
+.relative {
+  position: relative;
+  overflow: hidden;
 }
 
 section {
@@ -364,7 +349,7 @@ section {
   flex-shrink: 0;
   border-radius: 1.875rem;
   margin-top: 3%;
-  margin-left: 15%;
+  margin-left: 9%;
 }
 
 .hero__battery,
@@ -438,8 +423,8 @@ section {
 
 @media only screen and (max-width: 480px) {
 
-  .line__promo__text,
-  .line__promo__text__2 {
+  .line1,
+  .line2 {
     display: none;
   }
 
@@ -488,6 +473,12 @@ section {
     font-size: 80px;
     text-align: justify;
   }
+
+  .line1,
+  .line2 {
+    display: none;
+  }
+
 }
 
 @media only screen and (min-width: 768px) and (max-width: 1024px) {
@@ -569,4 +560,38 @@ section {
   }
 }
 
+@media only screen and (min-width: 1024px) and (max-width: 600px) {
+  .line1,
+  .line2 {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 344px) and (max-width: 882px) {
+  .line1,
+  .line2 {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 540px) and (max-width: 720px) {
+  .line1,
+  .line2 {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 720px) and (max-width: 1024px) {
+  .line1,
+  .line2 {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 1000px) and (max-width: 1366px) {
+  .line1,
+  .line2 {
+    display: none;
+  }
+}
 </style>
