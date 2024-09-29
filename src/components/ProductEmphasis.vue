@@ -562,60 +562,74 @@ const options = [
 
 @media only screen and (min-width: 1024px) and (max-width: 600px) {
 
-.main__content {
-    width: 85%;
-    padding: 0;
-    margin-bottom: 30px;
+    .main__content {
+        width: 85%;
+        padding: 0;
+        margin-bottom: 30px;
+    }
+
+    .card__product__emphasis__picture__offers {
+        display: none;
+    }
+
+    .card__product__emphasis__details {
+        width: 190px;
+    }
+
+    .product__emphasis__price__offer {
+        width: 190px;
+    }
+
+    .product__emphasis__price {
+        display: flex;
+        flex-direction: column;
+        margin-left: 10%;
+    }
+
+    .product__emphasis__review {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .title__product__emphasis {
+        margin-top: 20px;
+        margin-left: -20%;
+        width: 30px;
+    }
+
+    .product__emphasis__attributes__variation {
+        display: grid;
+        margin-left: 8%;
+    }
+
+    .product__emphasis__price {
+        display: flex;
+        flex-direction: column;
+        margin-left: 10%;
+    }
+
+    .button__product__emphasis {
+        width: 400px;
+        margin-left: -80%;
+    }
+
+    .hero__button {
+        margin-left: 0%;
+    }
 }
 
-.card__product__emphasis__picture__offers {
-    display: none;
-}
+@media only screen and (min-width: 1024px) {
 
-.card__product__emphasis__details {
-    width: 190px;
-}
+    .main__content {
+        width: 95%;
+    }
 
-.product__emphasis__price__offer {
-    width: 190px;
-}
+    #battery {
+        display: none;
+    }
 
-.product__emphasis__price {
-    display: flex;
-    flex-direction: column;
-    margin-left: 10%;
+    #warranty {
+        display: none;
+    }
 }
-
-.product__emphasis__review {
-    display: flex;
-    flex-direction: column;
-}
-
-.title__product__emphasis {
-    margin-top: 20px;
-    margin-left: -20%;
-    width: 30px;
-}
-
-.product__emphasis__attributes__variation {
-    display: grid;
-    margin-left: 8%;
-}
-
-.product__emphasis__price {
-    display: flex;
-    flex-direction: column;
-    margin-left: 10%;
-}
-
-.button__product__emphasis {
-    width: 400px;
-    margin-left: -80%;
-}
-
-.hero__button {
-    margin-left: 0%;
-}
-}
-
 </style>

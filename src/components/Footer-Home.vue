@@ -30,13 +30,12 @@
                 <a href="">Contact</a>
                 <a href="">Legal mentions</a>
             </div>
-            <div class="flex flex-1 flex-col gap-2">
+            <div class="flex flex-1 flex-col gap-2 subscribe__and__email">
                 <span class="footer-title"><strong>Subscribe to the Newsletter</strong></span>
                 <span style="width:70%">Sign up for exclusive offers, original stories, event and more.</span>
                 <div id="email-footer-input" class="flex flex-row justify-between">
                     <input type="email" placeholder="Email Address" class="flex-1">
-                    <button><img src="../assets/icons/icon-arrow-right.svg" alt="Arrow"
-                            class="inline-block w-6 h-6"></button>
+                    <button class="img__arrow__button"><img src="../assets/icons/icon-arrow-right.svg" alt="Arrow" class="inline-block w-6 h-6 img-arrow"></button>
                 </div>
             </div>
         </div>
@@ -45,7 +44,7 @@
         </div>
         <hr class="footer-line">
 
-        <div class="flex flex-row flex-1 justify-between">
+        <div class="flex flex-row flex-1 justify-between footer__copyright__icons">
             <div class="flex-1">
                 <span>© 2024 Gabini Headset Store. - All Rights Reserved</span>
             </div>
@@ -166,9 +165,70 @@
     filter: invert(100%);
 }
 
-.white-background-logo{
+.white-background-logo {
     background-color: white;
     border-radius: 15px;
     padding: 3px;
+}
+
+
+@media only screen and (max-width: 480px) {
+
+    #footer {
+        width: 95%;
+    }
+
+    .footer-items,
+    .footer__copyright__icons {
+        display: grid;
+        padding: 5px;
+    }
+
+    .footer-items div {
+        margin-bottom: 16px;
+    }
+
+    .subscribe__and__email {
+        margin-right: 60px;
+    }
+
+    .img-arrow {
+        display: none;
+    }
+
+    .footer-icons {
+        margin-right: 30px;
+        margin-top: 15px;
+    }
+}
+
+
+@media only screen and (min-width: 540px) and (max-width: 720px) {
+    #footer {
+        width: 95%;
+    }
+
+    .footer-items,
+    .footer__copyright__icons {
+        display: grid;
+        padding: 5px;
+    }
+
+    .footer-items div {
+        margin-bottom: 16px;
+    }
+
+    .subscribe__and__email {
+        margin-right: 60px;
+    }
+
+    .img-arrow {
+        display: none;
+    }
+
+    .footer-icons {
+        margin-right: 30px;
+        margin-top: 15px;
+    }
 }
 </style>
