@@ -34,9 +34,9 @@ const options = [
                 <div class="product__emphasis__info">
 
 
-                        <div class="card__product__emphasis__picture__offers">
-                            <img :src="selectedProductImage" alt="Selected Product Image" class="">
-                        </div>
+                    <div class="card__product__emphasis__picture__offers">
+                        <img :src="selectedProductImage" alt="Selected Product Image" class="">
+                    </div>
 
                     <div class="card__product__emphasis__details">
                         <h1 class="title__product__emphasis">
@@ -295,7 +295,7 @@ const options = [
 }
 
 .hero__button__icon {
-    display: flex;  
+    display: flex;
     justify-content: center;
     align-items: center;
     background: var(--Black-black-500, #000);
@@ -321,4 +321,301 @@ const options = [
     height: 436px;
     margin-left: 175px;
 }
+
+@media only screen and (max-width: 480px) {
+
+    .main__content {
+        width: 85%;
+        padding: 0;
+        margin-bottom: 30px;
+    }
+
+    .card__product__emphasis__picture__offers {
+        display: none;
+    }
+
+    .card__product__emphasis__details {
+        width: 190px;
+    }
+
+    .product__emphasis__price__offer {
+        width: 190px;
+    }
+
+    .product__emphasis__price {
+        display: flex;
+        flex-direction: column;
+        margin-left: 10%;
+    }
+
+    .product__emphasis__review {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .title__product__emphasis {
+        font-size: 27.6px;
+        margin-left: -10.2%;
+        width: 230px;
+    }
+
+    .product__emphasis__attributes__variation {
+        display: grid;
+        margin-left: 8%;
+    }
+
+    .product__emphasis__price {
+        display: flex;
+        flex-direction: column;
+        margin-left: 15%;
+    }
+
+    .button__product__emphasis {
+        width: 400px;
+        margin-left: -75%;
+    }
+
+    .hero__button {
+        margin-left: 0%;
+    }
+
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+
+    .main__content {
+        width: 85%;
+        padding: 0;
+        margin-bottom: 30px;
+    }
+
+    .card__product__emphasis__picture__offers {
+        display: none;
+    }
+
+    .card__product__emphasis__details {
+        width: 190px;
+    }
+
+    .product__emphasis__price__offer {
+        width: 190px;
+    }
+
+    .product__emphasis__price {
+        display: flex;
+        flex-direction: column;
+        margin-left: 10%;
+    }
+
+    .product__emphasis__review {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .title__product__emphasis {
+        margin-top: 20px;
+        margin-left: -25%;
+    }
+
+    .product__emphasis__attributes__variation {
+        display: grid;
+        margin-left: 8%;
+    }
+
+    .product__emphasis__price {
+        display: flex;
+        flex-direction: column;
+        margin-left: 10%;
+    }
+
+    .button__product__emphasis {
+        width: 400px;
+        margin-left: -80%;
+    }
+
+    .hero__button {
+        margin-left: 0%;
+    }
+}
+
+@media only screen and (min-width: 1024px) and (max-width: 1366px) {
+
+    .main__content {
+        width: 85%;
+        padding: 0;
+        margin-bottom: 30px;
+    }
+
+    .card__product__emphasis__picture__offers {
+        display: none;
+    }
+
+    .card__product__emphasis__details {
+        width: 190px;
+    }
+
+    .product__emphasis__price__offer {
+        width: 190px;
+    }
+
+    .product__emphasis__price {
+        display: flex;
+        flex-direction: column;
+        margin-left: 10%;
+    }
+
+    .product__emphasis__review {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .title__product__emphasis {
+        margin-top: 20px;
+        margin-left: -25%;
+    }
+
+    .product__emphasis__attributes__variation {
+        display: grid;
+        margin-left: 8%;
+    }
+
+    .product__emphasis__price {
+        display: flex;
+        flex-direction: column;
+        margin-left: 10%;
+    }
+
+    .button__product__emphasis {
+        width: 400px;
+        margin-left: -80%;
+    }
+
+    .hero__button {
+        margin-left: 0%;
+    }
+}
+
+@media only screen and (min-width: 540px) and (max-width: 720px) {
+
+    .main__content {
+        width: 85%;
+        padding: 0;
+        margin-bottom: 30px;
+    }
+
+    .card__product__emphasis__picture__offers {
+        display: none;
+    }
+
+    .card__product__emphasis__details {
+        width: 190px;
+    }
+
+    .product__emphasis__price__offer {
+        width: 190px;
+    }
+
+    .product__emphasis__price {
+        display: flex;
+        flex-direction: column;
+        margin-left: 10%;
+    }
+
+    .product__emphasis__review {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .title__product__emphasis {
+        margin-top: 20px;
+        margin-left: -20%;
+        width: 30px;
+    }
+
+    .product__emphasis__attributes__variation {
+        display: grid;
+        margin-left: 8%;
+    }
+
+    .product__emphasis__price {
+        display: flex;
+        flex-direction: column;
+        margin-left: 10%;
+    }
+
+    .button__product__emphasis {
+        width: 400px;
+        margin-left: -80%;
+    }
+
+    .hero__button {
+        margin-left: 0%;
+    }
+}
+
+@media only screen and (min-width: 344px) and (max-width: 882px) {
+    .button__product__emphasis {
+        width: 320px;
+        margin-left: -53%;
+    }
+}
+
+@media only screen and (min-width: 1024px) and (max-width: 600px) {
+
+.main__content {
+    width: 85%;
+    padding: 0;
+    margin-bottom: 30px;
+}
+
+.card__product__emphasis__picture__offers {
+    display: none;
+}
+
+.card__product__emphasis__details {
+    width: 190px;
+}
+
+.product__emphasis__price__offer {
+    width: 190px;
+}
+
+.product__emphasis__price {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10%;
+}
+
+.product__emphasis__review {
+    display: flex;
+    flex-direction: column;
+}
+
+.title__product__emphasis {
+    margin-top: 20px;
+    margin-left: -20%;
+    width: 30px;
+}
+
+.product__emphasis__attributes__variation {
+    display: grid;
+    margin-left: 8%;
+}
+
+.product__emphasis__price {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10%;
+}
+
+.button__product__emphasis {
+    width: 400px;
+    margin-left: -80%;
+}
+
+.hero__button {
+    margin-left: 0%;
+}
+}
+
 </style>
