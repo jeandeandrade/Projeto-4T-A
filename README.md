@@ -1,29 +1,59 @@
-# fabricadeprojetos4t-a-eficaz
+<h1 align="center">
+  Fabrica de Projetos 4° Termo <br/>
+  GABINI <br/>
+</h1>
 
-This template should help get you started developing with Vue 3 in Vite.
+## Time
+|Nome                                  | RA      |   
+|--------------------------------------|---------|
+|Eduardo Evaristo                      | 1959599 |     
+|Cesar Augusto de Almeida              | 2009114 |    
+|Henrique Malaga                       | 1961899 |     
+|Jean Carlos de Andrade Vieira         | 1962763 |      
+|Daniel Vieira					               | 1973948 |
 
-## Recommended IDE Setup
+## 📕 Sobre
+  O projeto possui como proposta **desenvolver uma aplicação Front-End** de um design criado pela empresa [Eficaz](https://eficazmarketing.com/), onde o objetivo central além do desenvolvimento, seria também a aplicação de **padrões de qualidade, tanto em relação ao layout quanto à estruturação de código**.
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+## 🛠️ Ferramentas
+- [Vite](https://vitejs.dev/) + [Vue](https://vuejs.org/) 
+- [TailwindCSS](https://tailwindcss.com/)
+- [Figma](https://www.figma.com/)
+- [Git](https://git-scm.com/)
 
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
+## 📁 Estrutura de Pastas
+```
+src
+  - assets
+    - fonts
+    - icons
+    - images
+  - components
+  - router
+  - views
+  - App.vue
+  - main.js
+```
+## 📄 Instruções de Instalação
+### 1. **Clone o repositório**
+```bash
+git clone https://github.com/jeandeandrade/Projeto-4T-A.git
+```
+---
+### 2. **Acesse a pasta do projeto**
+```bash
+cd \Projeto-4T-A\
+```
+---
+### 3. **Configuração do projeto**
+```bash
 npm install
 ```
-
-### Compile and Hot-Reload for Development
-
-```sh
+---
+### 4. **Compile o projeto**
+```bash
 npm run dev
 ```
 
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
+## Trello
+- [Trello](https://trello.com/b/5aQ9ZFfe/20-cacau)
