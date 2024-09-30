@@ -55,28 +55,28 @@
             </div>
             <div class="flex-1 flex flex-row gap-2 justify-end footer-icons">
                 <span class="footer-icon">
-                    <img src="../assets/icons/brand_icons/X_icon.svg" alt="x_logo" width="25px">
+                    <img src="../assets/icons/brand_icons/X_icon.png" alt="x_logo">
                 </span>
                 <span class="footer-icon">
-                    <img src="../assets/icons/brand_icons/facebook_icon.svg" alt="facebook_logo" width="28">
-                </span>
-                <span class="white-background-logo">
-                    <img src="../assets/icons/brand_icons/youtube_icon.svg" alt="youtube_logo" width="22">
+                    <img src="../assets/icons/brand_icons/facebook_icon.png" alt="facebook_logo">
                 </span>
                 <span class="footer-icon">
-                    <img src="../assets/icons/brand_icons/linkedin_icon.svg" alt="linkedin_logo" width="28">
-                </span>
-                <span class="white-background-logo">
-                    <img src="../assets/icons/brand_icons/instagram_icon.svg" alt="instagram_logo" width="21">
+                    <img src="../assets/icons/brand_icons/youtube_icon.png" alt="youtube_logo">
                 </span>
                 <span class="footer-icon">
-                    <img src="../assets/icons/brand_icons/tiktok_icon.svg" alt="tiktok_logo" width="28">
+                    <img src="../assets/icons/brand_icons/linkedin_icon.png" alt="linkedin_logo">
                 </span>
                 <span class="footer-icon">
-                    <img src="../assets/icons/brand_icons/pinterest_icon.svg" alt="pinterest_logo" width="28">
+                    <img src="../assets/icons/brand_icons/instagram_icon.png" alt="instagram_logo">
                 </span>
                 <span class="footer-icon">
-                    <img src="../assets/icons/brand_icons/spotify_icon.svg" alt="spotify_logo" width="28">
+                    <img src="../assets/icons/brand_icons/tiktok_icon.png" alt="tiktok_logo">
+                </span>
+                <span class="footer-icon">
+                    <img src="../assets/icons/brand_icons/pinterest_icon.png" alt="pinterest_logo">
+                </span>
+                <span class="footer-icon">
+                    <img src="../assets/icons/brand_icons/spotify_icon.png" alt="spotify_logo">
                 </span>
             </div>
         </div>
@@ -140,6 +140,7 @@
     background-color: white;
     padding: 8px;
     border-radius: 20px;
+    min-width: 40px;
 }
 
 #email-footer-input>button>img {
@@ -157,20 +158,17 @@
     text-decoration: underline;
 }
 
-.footer-icon {
-    border-radius: 15%;
+.footer-icon img {
+    width: 38px;
+    border-radius: 50%;
+    padding-left: 3px;
+    margin: 0;
 }
 
-.footer-icon>img {
-    filter: invert(100%);
+.footer__copyright__icons *{
+    display: flex;
+    align-items: center;
 }
-
-.white-background-logo {
-    background-color: white;
-    border-radius: 15px;
-    padding: 3px;
-}
-
 
 @media only screen and (max-width: 480px) {
 
