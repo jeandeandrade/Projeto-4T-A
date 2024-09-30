@@ -1,5 +1,5 @@
 <template>
-  <main class="main__content flex justify-center items-center p-4">
+  <main class="main__content flex justify-center items-center p-4" style="margin-top: 60px; margin-bottom: 50px;">
     <section class="card__content inline-flex flex-row gap-8 shrink-0">
       <div v-for="(product) in products" :key="product.id"
         class="card__product flex h-fit flex-col items-start shrink-0" :id="product.id">
