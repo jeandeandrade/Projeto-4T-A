@@ -24,7 +24,7 @@ function toggleDropdown() {
         </ul>
 
         <div class="flex items-center space-x-4 items__nav__signin__signup hidden lg:flex">
-            <a href="#" class="hover:text-blue-600 items__nav__sign">SIGN IN</a>
+            <router-link to="/registration"><a href="#" class="hover:text-blue-600 items__nav__sign">SIGN IN</a></router-link>
             <div class="text__sign__signup">&nbsp;</div>
             <a href="#" class="text-white py-2 px-4 items__nav__signup">SIGN UP FOR FREE</a>
         </div>
