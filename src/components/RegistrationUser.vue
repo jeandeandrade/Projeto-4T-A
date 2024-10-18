@@ -1,8 +1,5 @@
 <script setup>
-
 </script>
-background: linear-gradient(90deg, #03B1FF 0%, #97C4D8 100%);
-
 
 <template>
   <main>
@@ -21,7 +18,7 @@ background: linear-gradient(90deg, #03B1FF 0%, #97C4D8 100%);
       <div class="col-span-1">
         <img src="../assets/images/fotoPerfil.png" alt="" class="mx-auto">
       </div>
-      <div class="flex flex-col col-span-2">
+      <div class="flex flex-col col-span-2 gap-2">
         <label>Nome completo</label>
         <input type="text" id="nomeCompleto" placeholder="Ex: Eduardo Evaristo" class="max-w-[36rem] campos"></input>
         <label>Apelido</label>
@@ -31,7 +28,7 @@ background: linear-gradient(90deg, #03B1FF 0%, #97C4D8 100%);
         <label>Data de Nascimento</label>
         <input type="date" id="data" class="max-w-[36rem] campos"></input>
       </div>
-      <div class="flex flex-col col-span-2">
+      <div class="flex flex-col col-span-2 gap-2">
         <label>CPF</label>
         <input type="text" id="email" placeholder="Ex: 000.000.000-00" class="max-w-[36rem] campos"></input>
         <label>Gênero</label>
@@ -44,11 +41,11 @@ background: linear-gradient(90deg, #03B1FF 0%, #97C4D8 100%);
         <input type="password" id="senha" placeholder="Ex: **********" class="max-w-[36rem] campos"></input>
         <label>Telefone</label>
         <input type="text" id="telefone" placeholder="Ex: (00) 0000-0000" class="max-w-[36rem] campos"></input>
+        <div class="text-center">
+          <router-link to="/"><button class="button"><b>Voltar ao início</b></button></router-link>
+          <router-link to="/address"><button class="button"><b>Próximo Passo</b></button></router-link>
+        </div>
       </div>
-    </div>
-    <div class="text-center">
-      <router-link to="/"><button class="button"><b>Voltar ao início</b></button></router-link>
-      <router-link to="/"><button class="button"><b>Próximo Passo</b></button></router-link>
     </div>
   </main>
 </template>
