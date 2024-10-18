@@ -3,7 +3,7 @@
 <template>
   <div class="flex bg-black">
     <div
-      class="bg-[#FFF] w-[480px] h-[1000px] flex flex-col items-center border shadow-lg rounded-tl-[50px] rounded-bl-[50px] justify-start"
+      class="bg-[#FFF] w-[480px] h-[945px] flex flex-col items-center border shadow-lg rounded-tl-[50px] rounded-bl-[50px] justify-start"
     >
       <h1
         class="text-black font-bold text-xl w-[280px] h-[30px] mt-[248px] mb-[20px]"
@@ -72,7 +72,7 @@
       </div>
     </div>
     <div class="relative">
-      <img src="../assets/images/card.jpg" class="flex w-[1500px] h-[1001px]" />
+      <img src="../assets/images/card.jpg" class="w-[1500px] h-[945px]" />
       <img
         src="../assets/images/logo.png"
         class="absolute w-[561px] h-[189.51px] top-[339px] left-[750px]"
