@@ -1,4 +1,44 @@
-<script setup></script>
+<script setup>
+import { ref } from 'vue';
+
+const email = ref('');
+const emailValido = ref(null);
+
+function validarEmail() { 
+  const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return regex.test(email.value);
+}
+
+async function enviarFormulario() {
+  emailValido.value = validarEmail();
+  
+  // if (emailValido.value) {
+  //   try {
+  //     const response = await fetch('https://seu-endpoint.com/api', {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //       body: JSON.stringify({ email: email.value }),
+  //     });
+
+  //     if (!response.ok) {
+  //       throw new Error('Erro ao enviar o formulário');
+  //     }
+
+  //     const data = await response.json();
+  //     console.log('Formulário enviado com sucesso:', data);
+  //     // Aqui você pode limpar o formulário ou mostrar uma mensagem de sucesso.
+  //     email.value = ''; // Limpa o campo após envio bem-sucedido
+  //     emailValido.value = null; // Reseta a validação
+  //   } catch (error) {
+  //     console.error('Erro:', error);
+  //   }
+  // } else {
+  //   console.log("Erro: email inválido.");
+  // }
+}
+</script>
 
 <template>
   <div class="flex bg-black">
@@ -11,16 +51,19 @@
         Iniciar sessão na sua conta
       </h1>
 
+      <form @submit.prevent="enviarFormulario">
       <div class="flex flex-col items-start w-[410px] mt-8">
         <label class="text-black font-semibold text-base leading-normal mb-2">
           E-mail
         </label>
         <div class="relative w-full">
-          <input
+          <input v-model="email"
             type="email"
             class="w-full h-[50px] rounded-lg bg-[#F1F3F6] p-2 pr-10 border"
             placeholder="eduardo@email.com"
           />
+           <p v-if="emailValido === false" style="color: red;">Email inválido!</p>
+           <p v-if="emailValido === true" style="color: green;">Email válido!</p>
         </div>
       </div>
       <div class="flex flex-col items-start w-[410px] mt-8">
@@ -55,6 +98,7 @@
       </div>
       <div>
         <button
+          type="submit"
           class="flex w-[410px] h-[50px] mb-[41px] bg-black text-white font-semibold items-center justify-center mt-[33px] rounded-lg shadow-custom-blue"
         >
           Login
@@ -65,11 +109,13 @@
           <hr class="w-[175px] h-[1px] bg-[#9D9D9D]" />
         </div>
         <button
+          type="button"
           class="flex w-[410px] h-[50px] mb-[41px] bg-black text-white font-semibold items-center justify-center mt-[33px] rounded-lg shadow-custom-blue"
         >
           Registre-se
         </button>
       </div>
+    </form>
     </div>
     <div class="relative">
       <img src="../assets/images/card.png" class="w-[1500px] h-[945px]" />
