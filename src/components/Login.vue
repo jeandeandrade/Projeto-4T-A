@@ -3,10 +3,10 @@
 <template>
   <div class="flex bg-black">
     <div
-      class="bg-[#FFF] w-[480px] h-[945px] flex flex-col items-center border shadow-lg rounded-tl-[50px] rounded-bl-[50px] justify-start"
+      class="bg-[#FFF] w-[480px] h-[945px] flex flex-col items-center border shadow-lg justify-start"
     >
       <h1
-        class="text-black font-bold text-xl w-[280px] h-[30px] mt-[248px] mb-[20px]"
+        class="text-black font-bold text-xl text-center w-[280px] h-[30px] mt-[248px] mb-[20px]"
       >
         Iniciar sessão na sua conta
       </h1>
@@ -72,13 +72,13 @@
       </div>
     </div>
     <div class="relative">
-      <img src="../assets/images/card.jpg" class="w-[1500px] h-[945px]" />
+      <img src="../assets/images/card.png" class="w-[1500px] h-[945px]" />
       <img
         src="../assets/images/logo.png"
-        class="absolute w-[561px] h-[189.51px] top-[339px] left-[750px]"
+        class="absolute w-[561px] top-[339px] left-[750px]"
       />
       <p
-        class="absolute top-[560px] text-white left-[750px] font-inter font-bold text-[24px] leading-[44px] tracking-[-0.04em]"
+        class="absolute top-[455px] text-white left-[750px] font-inter font-bold text-[24px] leading-[44px] tracking-[-0.04em]"
       >
         Bem-vindo à Gabini Store! Os melhores headsets <br />
         com a mais alta qualidade, você encontra aqui.
