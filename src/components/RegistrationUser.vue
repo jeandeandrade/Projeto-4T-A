@@ -63,5 +63,6 @@
     color: black;
     background-color: #F1F3F6;
     padding: 10px;
+    margin-bottom: 20px;
 }
 </style>
