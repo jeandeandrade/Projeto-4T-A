@@ -1,17 +1,17 @@
 <script setup>
-import { ref } from 'vue';
+import { ref } from "vue";
 
-const email = ref('');
+const email = ref("");
 const emailValido = ref(null);
 
-function validarEmail() { 
+function validarEmail() {
   const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return regex.test(email.value);
 }
 
 async function enviarFormulario() {
   emailValido.value = validarEmail();
-  
+
   // if (emailValido.value) {
   //   try {
   //     const response = await fetch('https://seu-endpoint.com/api', {
@@ -43,7 +43,7 @@ async function enviarFormulario() {
 <template>
   <div class="flex bg-black">
     <div
-      class="bg-[#FFF] w-[480px] h-[945px] flex flex-col items-center border shadow-lg justify-start"
+      class="bg-[#FFF] w-[480px] h-[950px] flex flex-col items-center border shadow-lg justify-start"
     >
       <h1
         class="text-black font-bold text-xl text-center w-[280px] h-[30px] mt-[248px] mb-[20px]"
@@ -52,73 +52,78 @@ async function enviarFormulario() {
       </h1>
 
       <form @submit.prevent="enviarFormulario">
-      <div class="flex flex-col items-start w-[410px] mt-8">
-        <label class="text-black font-semibold text-base leading-normal mb-2">
-          E-mail
-        </label>
-        <div class="relative w-full">
-          <input v-model="email"
-            type="email"
-            class="w-full h-[50px] rounded-lg bg-[#F1F3F6] p-2 pr-10 border"
-            placeholder="eduardo@email.com"
-          />
-           <p v-if="emailValido === false" style="color: red;">Email inválido!</p>
-           <p v-if="emailValido === true" style="color: green;">Email válido!</p>
-        </div>
-      </div>
-      <div class="flex flex-col items-start w-[410px] mt-8">
-        <label class="text-black font-semibold text-base leading-normal mb-2">
-          Senha
-        </label>
-        <div class="relative w-full">
-          <input
-            type="password"
-            class="w-full h-[50px] rounded-lg bg-[#F1F3F6] p-2 pr-10 border"
-            placeholder="Insira a sua senha"
-          />
-        </div>
-      </div>
-      <div class="flex justify-between items-center w-[410px] mt-4">
-        <div class="flex items-center">
-          <input
-            id="lembrar"
-            type="checkbox"
-            class="w-4 h-4 border border-gray-300 rounded-sm focus:ring-2 focus:ring-blue-500"
-          />
-          <label
-            for="lembrar"
-            class="ml-2 text-[14px] leading-normal text-black text-sm font-semibold"
-          >
-            Lembrar minha senha
+        <div class="flex flex-col items-start w-[410px] mt-8">
+          <label class="text-black font-semibold text-base leading-normal mb-2">
+            E-mail
           </label>
+          <div class="relative w-full">
+            <input
+              v-model="email"
+              type="email"
+              class="w-full h-[50px] rounded-lg bg-[#F1F3F6] p-2 pr-10 border"
+              placeholder="eduardo@email.com"
+            />
+            <p v-if="emailValido === false" style="color: red">
+              Email inválido!
+            </p>
+            <p v-if="emailValido === true" style="color: green">
+              Email válido!
+            </p>
+          </div>
         </div>
-        <a href="#" class="leading-normal text-black text-sm font-semibold">
-          Esqueceu a senha?
-        </a>
-      </div>
-      <div>
-        <button
-          type="submit"
-          class="flex w-[410px] h-[50px] mb-[41px] bg-black text-white font-semibold items-center justify-center mt-[33px] rounded-lg shadow-custom-blue"
-        >
-          Login
-        </button>
-        <div class="flex items-center justify-center mb-[33px]">
-          <hr class="w-[175px] h-[1px] bg-[#9D9D9D]" />
-          <span class="mx-4 text-[#9D9D9D]">OU</span>
-          <hr class="w-[175px] h-[1px] bg-[#9D9D9D]" />
+        <div class="flex flex-col items-start w-[410px] mt-8">
+          <label class="text-black font-semibold text-base leading-normal mb-2">
+            Senha
+          </label>
+          <div class="relative w-full">
+            <input
+              type="password"
+              class="w-full h-[50px] rounded-lg bg-[#F1F3F6] p-2 pr-10 border"
+              placeholder="Insira a sua senha"
+            />
+          </div>
         </div>
-        <button
-          type="button"
-          class="flex w-[410px] h-[50px] mb-[41px] bg-black text-white font-semibold items-center justify-center mt-[33px] rounded-lg shadow-custom-blue"
-        >
-          Registre-se
-        </button>
-      </div>
-    </form>
+        <div class="flex justify-between items-center w-[410px] mt-4">
+          <div class="flex items-center">
+            <input
+              id="lembrar"
+              type="checkbox"
+              class="w-4 h-4 border border-gray-300 rounded-sm focus:ring-2 focus:ring-blue-500"
+            />
+            <label
+              for="lembrar"
+              class="ml-2 text-[14px] leading-normal text-black text-sm font-semibold"
+            >
+              Lembrar minha senha
+            </label>
+          </div>
+          <a href="#" class="leading-normal text-black text-sm font-semibold">
+            Esqueceu a senha?
+          </a>
+        </div>
+        <div>
+          <button
+            type="submit"
+            class="flex w-[410px] h-[50px] mb-[41px] bg-black text-white font-semibold items-center justify-center mt-[33px] rounded-lg shadow-custom-blue"
+          >
+            Login
+          </button>
+          <div class="flex items-center justify-center mb-[33px]">
+            <hr class="w-[175px] h-[1px] bg-[#9D9D9D]" />
+            <span class="mx-4 text-[#9D9D9D]">OU</span>
+            <hr class="w-[175px] h-[1px] bg-[#9D9D9D]" />
+          </div>
+          <button
+            type="button"
+            class="flex w-[410px] h-[50px] mb-[41px] bg-black text-white font-semibold items-center justify-center mt-[33px] rounded-lg shadow-custom-blue"
+          >
+            Registre-se
+          </button>
+        </div>
+      </form>
     </div>
     <div class="relative">
-      <img src="../assets/images/card.png" class="w-[1500px] h-[945px]" />
+      <img src="../assets/images/card.png" class="w-[1500px] h-[953px]" />
       <img
         src="../assets/images/logo.png"
         class="absolute w-[561px] top-[339px] left-[750px]"
