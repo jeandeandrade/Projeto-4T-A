@@ -57,12 +57,19 @@ async function enviarFormulario() {
             E-mail
           </label>
           <div class="relative w-full">
-            <input
-              v-model="email"
-              type="email"
-              class="w-full h-[50px] rounded-lg bg-[#F1F3F6] p-2 pr-10 border"
-              placeholder="eduardo@email.com"
-            />
+            <div class="flex">
+              <input
+                v-model="email"
+                type="email"
+                class="w-full h-[50px] rounded-lg bg-[#F1F3F6] p-2 pr-10 border"
+                placeholder="eduardo@email.com"
+              />
+              <img
+                class="w-50px h-50px bg-black p-[14.5px] rounded-lg"
+                src="../assets/icons/mail.svg"
+                alt=""
+              />
+            </div>
             <p v-if="emailValido === false" style="color: red">
               Email inválido!
             </p>
@@ -75,11 +82,16 @@ async function enviarFormulario() {
           <label class="text-black font-semibold text-base leading-normal mb-2">
             Senha
           </label>
-          <div class="relative w-full">
+          <div class="flex relative w-full">
             <input
               type="password"
               class="w-full h-[50px] rounded-lg bg-[#F1F3F6] p-2 pr-10 border"
               placeholder="Insira a sua senha"
+            />
+            <img
+              class="w-50px h-50px bg-black p-[16px] rounded-lg"
+              src="../assets/icons/cadeado.svg"
+              alt=""
             />
           </div>
         </div>
