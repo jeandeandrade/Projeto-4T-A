@@ -26,7 +26,7 @@ function toggleDropdown() {
         <div class="flex items-center space-x-4 items__nav__signin__signup hidden lg:flex">
             <a href="/login" class="hover:text-blue-600 items__nav__sign">SIGN IN</a>
             <div class="text__sign__signup">&nbsp;</div>
-            <router-link to="/registration"><a href="#" class="text-white py-2 px-4 items__nav__signup">SIGN UP FOR FREE</a></router-link>
+            <a href="/registration" class="text-white py-2 px-4 items__nav__signup">SIGN UP FOR FREE</a>
         </div>
 
         <button @click="toggleDropdown" class="block lg:hidden">
@@ -45,7 +45,7 @@ function toggleDropdown() {
             <li class="items"><a href="#" class="hover:text-blue-600">SHOP BY CATEGORY</a></li>
             <li class="items"><a href="#" class="hover:text-blue-600">SUPPORT</a></li>
             <li class="items"><a href="#" class="hover:text-blue-600">SIGN IN</a></li>
-            <li class="items"><a href="#" class="hover:text-blue-600">SIGN UP FOR FREE</a></li>
+            <li class="items"><a href="/registration" class="hover:text-blue-600">SIGN UP FOR FREE</a></li>
         </ul>
     </div>
 </template>

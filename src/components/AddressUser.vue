@@ -15,6 +15,14 @@ function adicionarEndereco() {
   console.table(dados.value)
 }
 
+const isVisible = ref(false);
+
+function mostraEndereco() {
+  isVisible.value = true;
+}
+function ocultaEndereco() {
+  isVisible.value = false;
+}
 </script>
 
 <template>
@@ -80,26 +88,36 @@ function adicionarEndereco() {
         </div>
       </div>
       <div class="text-right text-xs mr-14">
-          <button class="button">Ver endereços digitados</button>
+          <button v-if="!isVisible" @click="mostraEndereco" class="button">Ver endereços digitados</button>
+          <button v-if="isVisible" @click="ocultaEndereco" class="button">Ocultar endereços digitados</button>
           <button class="submit button">Adicionar mais endereços +</button>
       </div>
     </form>
 
-    <!-- <h2>Endereços:</h2>
-    <ul>
-      <div class="grid grid-cols-2">
-      <li v-for="dado in dados" :key="dado.rua">
-          <div class="flex flex-col col-span-1 p-4">
-            <p>{{ dado.rua }}</p>
-            <p>{{ dado.bairro }}</p> 
-            <p>{{ dado.cep }}</p> 
-            <p>{{ dado.complemento }}</p> 
-            <p>{{ dado.cidade }}</p> 
-            <p>{{ dado.numeroResidencia }}</p>
-          </div>
-      </li>
-      </div>
-    </ul> -->
+    <div v-if="isVisible">
+      <table class="min-w-full bg-white border border-gray-300">
+        <thead>
+          <tr class="bg-gray-200 text-gray-600">
+            <th class="py-2 px-4 border-b">Nome da Rua</th>
+            <th class="py-2 px-4 border-b">Bairro</th>
+            <th class="py-2 px-4 border-b">CEP</th>
+            <th class="py-2 px-4 border-b">Complemento</th>
+            <th class="py-2 px-4 border-b">Cidade</th>
+            <th class="py-2 px-4 border-b">Número da residência</th>
+          </tr>
+        </thead>
+        <tbody v-for="dado in dados" :key="dado.rua" class="text-center">
+          <tr class="hover:bg-gray-100">
+            <td class="py-2 px-4 border-b">{{ dado.rua }}</td>
+            <td class="py-2 px-4 border-b">{{ dado.bairro }}</td>
+            <td class="py-2 px-4 border-b">{{ dado.cep }}</td>
+            <td class="py-2 px-4 border-b">{{ dado.complemento }}</td>
+            <td class="py-2 px-4 border-b">{{ dado.cidade }}</td>
+            <td class="py-2 px-4 border-b">{{ dado.numeroResidencia }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
     <div class="text-right mt-14">
         <router-link to="/registration"><button class="button"><b>Voltar a etapa anterior</b></button></router-link>
@@ -110,20 +128,15 @@ function adicionarEndereco() {
 
 <style scoped>
 .button{
-    color: white;
-    background-color: black;
-    padding: 10px 30px;
-    margin: 20px;
-    width: 300px;
-    border-radius: 10px;
-}
-form .button{
   color: white;
   background-color: black;
-  padding: 10px 30px;
+  padding: 10px 0px;
   margin: 20px;
-  width: auto;
+  width: 300px;
   border-radius: 10px;
+}
+form .button{
+  width: 200px;
 }
 .campos{
   border-radius: 5px 0px 0px 5px;

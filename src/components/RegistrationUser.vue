@@ -100,7 +100,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .button{
     color: white;
     background-color: black;
-    padding: 10px 30px;
+    padding: 10px 0px;
     margin: 20px;
     width: 300px;
     border-radius: 10px;
