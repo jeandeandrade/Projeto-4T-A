@@ -1,18 +1,30 @@
 <script setup>
 import { ref } from 'vue';
+import { useRoute } from 'vue-router';
 
-const listaEndereco = ref({ rua: ''});
-const dados = ref([]);
+const route = useRoute();
+const listaEndereco = ref({
+  rua: '',
+  bairro: '',
+  cep: '',
+  complemento: '',
+  cidade: '',
+  numeroResidencia: ''
+});
+const user = route.state.user;
+const endereco = ref([])
+
 
 function adicionarEndereco() {
-  dados.value.push({ ...listaEndereco.value });
-  listaEndereco.value.rua = '';
+  endereco.value.push({ ...listaEndereco.value });
+  user.endereco.push({ ...listaEndereco.value });
+  listaEndereco.value.nomeRua = '';
   listaEndereco.value.bairro = '';
   listaEndereco.value.cep = '';
   listaEndereco.value.complemento = '';
   listaEndereco.value.cidade = '';
   listaEndereco.value.numeroResidencia = '';
-  console.table(dados.value)
+  console.table(endereco.value)
 }
 
 const isVisible = ref(false);
@@ -43,7 +55,7 @@ function ocultaEndereco() {
         <div class="flex flex-col col-span-1 gap-2 max-w-[36rem] w-full mx-auto">
           <label>Nome da rua</label>
           <div class="flex">
-            <input type="text" name="rua" v-model="listaEndereco.rua" placeholder="Ex: Nove de Julho" class="w-full campos" required></input>
+            <input type="text" name="rua" v-model="listaEndereco.nomeRua" placeholder="Ex: Nove de Julho" class="w-full campos" required></input>
             <svg class="h-11 w-11 icons"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
               <path stroke="none" d="M0 0h24v24H0z"/>  <path d="M8 9l5 5v7h-5v-4m0 4h-5v-7l5 -5m1 1v-6a1 1 0 0 1 1 -1h10a1 1 0 0 1 1 1v17h-8" />  <line x1="13" y1="7" x2="13" y2="7.01" />  <line x1="17" y1="7" x2="17" y2="7.01" />  <line x1="17" y1="11" x2="17" y2="11.01" />  <line x1="17" y1="15" x2="17" y2="15.01" />
             </svg>
@@ -106,9 +118,9 @@ function ocultaEndereco() {
             <th class="py-2 px-4 border-b">Número da residência</th>
           </tr>
         </thead>
-        <tbody v-for="dado in dados" :key="dado.rua" class="text-center">
+        <tbody v-for="dado in endereco" :key="dado.nomeRua" class="text-center">
           <tr class="hover:bg-gray-100">
-            <td class="py-2 px-4 border-b">{{ dado.rua }}</td>
+            <td class="py-2 px-4 border-b">{{ dado.nomeRua }}</td>
             <td class="py-2 px-4 border-b">{{ dado.bairro }}</td>
             <td class="py-2 px-4 border-b">{{ dado.cep }}</td>
             <td class="py-2 px-4 border-b">{{ dado.complemento }}</td>
