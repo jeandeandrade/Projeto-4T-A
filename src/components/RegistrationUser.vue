@@ -18,25 +18,10 @@ const newUser = ref({
 const createUser = async () => {
   try {
     const response = await axios.post('https://672017f0e7a5792f053074c2.mockapi.io/apa/user', newUser.value);
-    users.value.push(response.data); // Adiciona o novo usuário à lista
-    resetForm(); // Reseta o formulário
+    users.value.push(response.data);
   } catch (error) {
     console.error('Erro ao criar usuário:', error);
   }
-};
-
-const resetForm = () => {
-  newUser.value = {
-    nome: '',
-    apelido: '',
-    email: '',
-    senha: '',
-    cpf: '',
-    dataNascimento: '',
-    genero: '',
-    telefone: '',
-    endereco: []
-  };
 };
 
 const isVisible = ref(false);
