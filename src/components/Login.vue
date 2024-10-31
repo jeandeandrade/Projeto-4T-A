@@ -41,12 +41,12 @@ async function enviarFormulario() {
 </script>
 
 <template>
-  <div class="flex bg-black">
+  <div class="lg:flex lg:bg-black w-screen h-screen">
     <div
-      class="bg-[#FFF] w-[480px] h-[950px] flex flex-col items-center border shadow-lg justify-start"
+      class="bg-[#FFF] min:w-[480px] md:h-screen h-[950px] p-4 flex flex-col items-center border shadow-lg justify-center"
     >
       <h1
-        class="text-black font-bold text-xl text-center w-[280px] h-[30px] mt-[248px] mb-[20px]"
+        class="text-black font-bold text-xl text-center w-[280px] h-[30px] mb-[20px]"
       >
         Iniciar sessão na sua conta
       </h1>
@@ -134,18 +134,6 @@ async function enviarFormulario() {
         </div>
       </form>
     </div>
-    <div class="relative">
-      <img src="../assets/images/card.png" class="w-[1500px] h-[953px]" />
-      <img
-        src="../assets/images/logo.png"
-        class="absolute w-[561px] top-[339px] left-[750px]"
-      />
-      <p
-        class="absolute top-[455px] text-white left-[750px] font-inter font-bold text-[24px] leading-[44px] tracking-[-0.04em]"
-      >
-        Bem-vindo à Gabini Store! Os melhores headsets <br />
-        com a mais alta qualidade, você encontra aqui.
-      </p>
-    </div>
+    <img class="hidden md:block w-full object-cover md:h-full overflow-visible" src="../assets/images/login23.svg" />
   </div>
 </template>
