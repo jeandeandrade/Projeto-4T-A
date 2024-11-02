@@ -1,42 +1,27 @@
 <script setup>
 import { ref } from "vue";
+import { useRouter } from "vue-router";
+import axios from "axios";
 
 const email = ref("");
+const password = ref("");
 const emailValido = ref(null);
+const router = useRouter();
 
-function validarEmail() {
-  const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return regex.test(email.value);
-}
-
-async function enviarFormulario() {
-  emailValido.value = validarEmail();
-
-  // if (emailValido.value) {
-  //   try {
-  //     const response = await fetch('https://seu-endpoint.com/api', {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //       body: JSON.stringify({ email: email.value }),
-  //     });
-
-  //     if (!response.ok) {
-  //       throw new Error('Erro ao enviar o formulário');
-  //     }
-
-  //     const data = await response.json();
-  //     console.log('Formulário enviado com sucesso:', data);
-  //     // Aqui você pode limpar o formulário ou mostrar uma mensagem de sucesso.
-  //     email.value = ''; // Limpa o campo após envio bem-sucedido
-  //     emailValido.value = null; // Reseta a validação
-  //   } catch (error) {
-  //     console.error('Erro:', error);
-  //   }
-  // } else {
-  //   console.log("Erro: email inválido.");
-  // }
+async function login() {
+  try {
+    const response = await axios.get("https://67255c2bc39fedae05b49547.mockapi.io/api/users");
+    const usuario = response.data.find(u => u.email === email.value && u.senha === password.value); 
+    if (usuario) {
+      console.log("Login efetuado com sucesso!");
+      router.push('/'); 
+    } else {
+      alert("Email ou senha invalidos")
+      console.error("Credenciais inválidas.");
+    }
+  } catch (error) {
+    console.error("Erro", error.message);
+  }
 }
 </script>
 
@@ -45,13 +30,11 @@ async function enviarFormulario() {
     <div
       class="bg-[#FFF] min:w-[480px] md:h-screen h-[950px] p-4 flex flex-col items-center border shadow-lg justify-center"
     >
-      <h1
-        class="text-black font-bold text-xl text-center w-[280px] h-[30px] mb-[20px]"
-      >
+      <h1 class="text-black font-bold text-xl text-center w-[280px] h-[30px] mb-[20px]">
         Iniciar sessão na sua conta
       </h1>
 
-      <form @submit.prevent="enviarFormulario">
+      <form @submit.prevent="login">
         <div class="flex flex-col items-start w-[410px] mt-8">
           <label class="text-black font-semibold text-base leading-normal mb-2">
             E-mail
@@ -84,6 +67,7 @@ async function enviarFormulario() {
           </label>
           <div class="flex relative w-full">
             <input
+              v-model="password"
               type="password"
               class="w-full h-[50px] rounded-lg bg-[#F1F3F6] p-2 pr-10 border"
               placeholder="Insira a sua senha"
