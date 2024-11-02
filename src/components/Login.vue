@@ -6,20 +6,31 @@ import axios from "axios";
 const email = ref("");
 const password = ref("");
 const emailValido = ref(null);
+const mensagem = ref("");
+const corMensagem = ref("");
 const router = useRouter();
 
 async function login() {
   try {
-    const response = await axios.get("https://67255c2bc39fedae05b49547.mockapi.io/api/users");
-    const usuario = response.data.find(u => u.email === email.value && u.senha === password.value); 
+    const response = await axios.get(
+      "https://67255c2bc39fedae05b49547.mockapi.io/api/users"
+    );
+    const usuario = response.data.find(
+      (u) => u.email === email.value && u.senha === password.value
+    );
     if (usuario) {
-      console.log("Login efetuado com sucesso!");
-      router.push('/'); 
+      mensagem.value = "Login efetuado com sucesso!";
+      corMensagem.value = "green";
+      console.log(mensagem.value);
+      setTimeout(() => router.push("/"), 2000);
     } else {
-      alert("Email ou senha invalidos")
-      console.error("Credenciais inválidas.");
+      mensagem.value = "Email ou senha inválidos";
+      corMensagem.value = "red";
+      console.error(mensagem.value);
     }
   } catch (error) {
+    mensagem.value = "Erro ao tentar realizar o login";
+    corMensagem.value = "red";
     console.error("Erro", error.message);
   }
 }
@@ -30,7 +41,9 @@ async function login() {
     <div
       class="bg-[#FFF] min:w-[480px] md:h-screen h-[950px] p-4 flex flex-col items-center border shadow-lg justify-center"
     >
-      <h1 class="text-black font-bold text-xl text-center w-[280px] h-[30px] mb-[20px]">
+      <h1
+        class="text-black font-bold text-xl text-center w-[280px] h-[30px] mb-[20px]"
+      >
         Iniciar sessão na sua conta
       </h1>
 
@@ -116,8 +129,18 @@ async function login() {
             Registre-se
           </button>
         </div>
+        <p
+          v-if="mensagem"
+          :style="{ color: corMensagem }"
+          class="text-center mt-4"
+        >
+          {{ mensagem }}
+        </p>
       </form>
     </div>
-    <img class="hidden md:block w-full object-cover md:h-full overflow-visible" src="../assets/images/login23.svg" />
+    <img
+      class="hidden md:block w-full object-cover md:h-full overflow-visible"
+      src="../assets/images/login23.svg"
+    />
   </div>
 </template>
