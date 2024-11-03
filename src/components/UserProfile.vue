@@ -15,72 +15,75 @@
         <div class="registro grid md:grid-cols-5 md:gap-4 ml-5 mr-5">
             <!-- Imagem de Perfil -->
             <div class="col-span-1 imgPerfil">
-                <img src="../assets/images/fotoPerfil.png" alt="" class="mx-auto">
+                <img src="../assets/images/fotoPerfil.png" alt="" class="mx-auto p-5">
             </div>
 
-            <div class="col-span-4 flex flex-col space-y-4">
+            <div class="col-span-4 flex flex-col space-y-3">
                 <div class="flex items-center justify-between">
-                    <h3 class="nomecompleto__idade">Ariane Silva, 19 anos</h3>
-                    <button @click="showEditModal = true" class="button">Editar Perfil</button>
-                </div>
+    <h3 class="nomecompleto__idade">
+        {{ editData.nome }}, {{ calculateAge(editData.dataNascimento) }} anos
+    </h3>
+    <div class="flex space-x-2">
+        <button @click="goToHomePage" class="button">Voltar à Página Inicial</button>
+        <button @click="showEditModal = true" class="button">Editar Perfil</button>
+    </div>
+</div>
+
+
 
                 <div class="separator"></div>
 
-                <div class="dados__pessoais grid grid-cols-2 gap-4 p-4 border rounded-lg shadow-md bg-white">
-                    <p class="dados__pessoais__bloco">Apelido</p>
-                    <p class="dados__pessoais__bloco">E-mail</p>
-                    <p class="dados__pessoais__bloco">Nascimento</p>
-                    <p class="dados__pessoais__bloco">Data de Nascimento</p>
-                    <p class="dados__pessoais__bloco">CPF</p>
-                    <p class="dados__pessoais__bloco">Senha</p>
-                    <p class="dados__pessoais__bloco">Gênero</p>
-                    <p class="dados__pessoais__bloco">Telefone</p>
+                <div class="dados__pessoais grid grid-cols-2 gap-4 p-3 border rounded-lg shadow-md bg-white">
+                    <p class="dados__pessoais__bloco"><b>Apelido</b></p>
+                    <p class="dados__pessoais__bloco">{{ editData.apelido }}</p>
+                    <p class="dados__pessoais__bloco"><b>E-mail</b></p>
+                    <p class="dados__pessoais__bloco">{{ editData.email }}</p>
+                    <p class="dados__pessoais__bloco"><b>Nascimento</b></p>
+                    <p class="dados__pessoais__bloco">{{ editData.dataNascimento }}</p>
+                    <p class="dados__pessoais__bloco"><b>CPF</b></p>
+                    <p class="dados__pessoais__bloco">{{ editData.cpf }}</p>
+                    <p class="dados__pessoais__bloco"><b>Senha</b></p>
+                    <p class="dados__pessoais__bloco">**********</p>
+                    <p class="dados__pessoais__bloco"><b>Gênero</b></p>
+                    <p class="dados__pessoais__bloco">{{ editData.genero }}</p>
+                    <p class="dados__pessoais__bloco"><b>Telefone</b></p>
+                    <p class="dados__pessoais__bloco">{{ editData.telefone }}</p>
                 </div>
 
                 <!-- Botão Ver todos endereços -->
                 <button @click="showModal = true" class="button w-auto mt-4">Ver todos endereços</button>
             </div>
+        </div>
 
-            <!-- Endereço Principal -->
-            <div class="enderecos col-span-5 mt-4 p-4 border rounded-lg shadow-md bg-white h-full">
-                <h3 class="text-lg font-semibold">
-                    Endereço principal
-                    <span class="badge">Principal</span>
-                </h3>
-                <p><strong>Rua:</strong> Exemplo, 123</p>
-                <p><strong>Bairro:</strong> Centro</p>
-                <p><strong>Complemento:</strong> Apto 101</p>
-                <p><strong>Cidade:</strong> São Paulo, SP</p>
-                <p><strong>CEP:</strong> 00000-000</p>
-            </div>
+        <!-- Endereço Principal -->
+        <div v-if="addresses.length > 0"
+            class="enderecos col-span-5 mt-4 p-4 border rounded-lg shadow-md bg-white h-full"
+            style="width: 98%; margin: 0 auto; margin-top: 10px;">
+            <h3 class="text-lg font-semibold">
+                Endereço principal
+                <span class="badge">Principal</span>
+            </h3>
+            <p><strong>Rua:</strong> {{ addresses[0].nomeRua }}</p>
+            <p><strong>Bairro:</strong> {{ addresses[0].bairro }}</p>
+            <p><strong>Complemento:</strong> {{ addresses[0].complemento }}</p>
+            <p><strong>Cidade:</strong> {{ addresses[0].cidade }}</p>
+            <p><strong>CEP:</strong> {{ addresses[0].cep }}</p>
+            <p><strong>Número da Residência:</strong> {{ addresses[0].numeroResidencia }}</p>
+        </div>
 
-            <!-- Outros Endereços -->
-            <div
-                class="enderecos col-span-5 mt-4 p-4 grid grid-cols-3 gap-4 border rounded-lg shadow-md bg-white h-full">
-                <div>
-                    <h3 class="text-lg font-semibold">Endereço Secundário 1</h3>
-                    <p><strong>Rua:</strong> Secundária, 456</p>
-                    <p><strong>Bairro:</strong> Zona Norte</p>
-                    <p><strong>Complemento:</strong> Casa</p>
-                    <p><strong>Cidade:</strong> Rio de Janeiro, RJ</p>
-                    <p><strong>CEP:</strong> 11111-111</p>
-                </div>
-                <div>
-                    <h3 class="text-lg font-semibold">Endereço Secundário 2</h3>
-                    <p><strong>Rua:</strong> Av. das Américas, 789</p>
-                    <p><strong>Bairro:</strong> Centro</p>
-                    <p><strong>Complemento:</strong> Sala 305</p>
-                    <p><strong>Cidade:</strong> Belo Horizonte, MG</p>
-                    <p><strong>CEP:</strong> 22222-222</p>
-                </div>
-                <div>
-                    <h3 class="text-lg font-semibold">Endereço Secundário 3</h3>
-                    <p><strong>Rua:</strong> Rua do Comércio, 321</p>
-                    <p><strong>Bairro:</strong> Comércio</p>
-                    <p><strong>Complemento:</strong> Loja A</p>
-                    <p><strong>Cidade:</strong> Salvador, BA</p>
-                    <p><strong>CEP:</strong> 33333-333</p>
-                </div>
+
+        <!-- Outros Endereços -->
+        <div v-if="addresses.length > 1"
+            class="enderecos col-span-5 mt-4 p-4 grid grid-cols-3 gap-4 border rounded-lg shadow-md bg-white h-full"
+            style="width: 98%; margin: 0 auto; margin-top: 10px;">
+            <div v-for="(address, index) in addresses.slice(1)" :key="index">
+                <h3 class="text-lg font-semibold">Endereço Secundário {{ index + 1 }}</h3>
+                <p><strong>Rua:</strong> {{ address.nomeRua }}</p>
+                <p><strong>Bairro:</strong> {{ address.bairro }}</p>
+                <p><strong>Complemento:</strong> {{ address.complemento }}</p>
+                <p><strong>Cidade:</strong> {{ address.cidade }}</p>
+                <p><strong>CEP:</strong> {{ address.cep }}</p>
+                <p><strong>Número da Residência:</strong> {{ address.numeroResidencia }}</p>
             </div>
         </div>
 
@@ -95,23 +98,27 @@
                             <div class="space-y-4">
                                 <div>
                                     <label class="block">Rua</label>
-                                    <input type="text" v-model="editingAddressData.street" class="input" />
+                                    <input type="text" v-model="editingAddressData.nomeRua" class="input" />
                                 </div>
                                 <div>
                                     <label class="block">Bairro</label>
-                                    <input type="text" v-model="editingAddressData.neighborhood" class="input" />
+                                    <input type="text" v-model="editingAddressData.bairro" class="input" />
                                 </div>
                                 <div>
                                     <label class="block">Complemento</label>
-                                    <input type="text" v-model="editingAddressData.complement" class="input" />
+                                    <input type="text" v-model="editingAddressData.complemento" class="input" />
                                 </div>
                                 <div>
                                     <label class="block">Cidade</label>
-                                    <input type="text" v-model="editingAddressData.city" class="input" />
+                                    <input type="text" v-model="editingAddressData.cidade" class="input" />
                                 </div>
                                 <div>
                                     <label class="block">CEP</label>
-                                    <input type="text" v-model="editingAddressData.zip" class="input" />
+                                    <input type="text" v-model="editingAddressData.cep" class="input" />
+                                </div>
+                                <div>
+                                    <label class="block">Número da residência</label>
+                                    <input type="text" v-model="editingAddressData.numeroResidencia" class="input" />
                                 </div>
                             </div>
                             <button type="button" @click="cancelEdit"
@@ -124,11 +131,11 @@
                             <!-- Endereços dentro do modal -->
                             <div v-for="(address, index) in addresses" :key="index"
                                 class="p-4 border rounded-lg shadow-sm">
-                                <p><strong>Rua:</strong> {{ address.street }}</p>
-                                <p><strong>Bairro:</strong> {{ address.neighborhood }}</p>
-                                <p><strong>Complemento:</strong> {{ address.complement }}</p>
-                                <p><strong>Cidade:</strong> {{ address.city }}</p>
-                                <p><strong>CEP:</strong> {{ address.zip }}</p>
+                                <p><strong>Rua:</strong> {{ address.nomeRua }}</p>
+                                <p><strong>Bairro:</strong> {{ address.bairro }}</p>
+                                <p><strong>Complemento:</strong> {{ address.complemento }}</p>
+                                <p><strong>Cidade:</strong> {{ address.cidade }}</p>
+                                <p><strong>CEP:</strong> {{ address.cep }}</p>
                                 <button @click="editAddress(index)" class="button mt-2">Editar</button>
                             </div>
                         </div>
@@ -148,19 +155,27 @@
                         <div class="space-y-4">
                             <div>
                                 <label class="block">Nome Completo</label>
-                                <input type="text" v-model="editData.name" class="input" />
-                            </div>
-                            <div>
-                                <label class="block">Idade</label>
-                                <input type="number" v-model="editData.age" class="input" />
+                                <input type="text" v-model="editData.nome" class="input" />
                             </div>
                             <div>
                                 <label class="block">E-mail</label>
                                 <input type="email" v-model="editData.email" class="input" />
                             </div>
                             <div>
+                                <label class="block">Apelido</label>
+                                <input type="email" v-model="editData.apelido" class="input" />
+                            </div>
+                            <div>
+                                <label class="block">Genero</label>
+                                <input type="email" v-model="editData.genero" class="input" />
+                            </div>
+                            <div>
+                                <label class="block">CPF</label>
+                                <input type="email" v-model="editData.cpf" class="input" />
+                            </div>
+                            <div>
                                 <label class="block">Telefone</label>
-                                <input type="text" v-model="editData.phone" class="input" />
+                                <input type="text" v-model="editData.telefone" class="input" />
                             </div>
                         </div>
                         <button type="button" @click="showEditModal = false"
@@ -174,52 +189,111 @@
 </template>
 
 <script>
+import PostUserDataService from '@/services/PostUserDataService';
+
 export default {
     data() {
         return {
+            editData: {
+                nome: '',
+                apelido: '',
+                email: '',
+                dataNascimento: '',
+                cpf: '',
+                genero: '',
+                telefone: ''
+            },
+            addresses: [],
             showModal: false,
             showEditModal: false,
             editingAddress: false,
-            editData: {
-                name: "Ariane Silva",
-                age: 19,
-                email: "ariane@example.com",
-                phone: "123-456-7890"
-            },
-            addresses: [
-                { street: "Exemplo, 123", neighborhood: "Centro", complement: "Apto 101", city: "São Paulo, SP", zip: "00000-000" },
-                { street: "Secundária, 456", neighborhood: "Zona Norte", complement: "Casa", city: "Rio de Janeiro, RJ", zip: "11111-111" },
-                { street: "Av. das Américas, 789", neighborhood: "Centro", complement: "Sala 305", city: "Belo Horizonte, MG", zip: "22222-222" },
-            ],
-            editingAddressData: {}
+            editingAddressData: {
+                nomeRua: '',
+                bairro: '',
+                complemento: '',
+                cidade: '',
+                numeroResidencia: '',
+                cep: ''
+            }
         };
     },
     methods: {
-        saveChanges() {
-            console.log("Alterações salvas:", this.editData);
-            this.showEditModal = false;
+        async loadUserData() {
+
+            try {
+
+                const response = await PostUserDataService.getUser();
+                this.editData = response.data;
+                this.addresses = response.data.addresses;
+
+            } catch (error) {
+                console.error("Erro ao carregar dados do usuário:", error);
+            }
+
+        },
+        calculateAge(birthDate) {
+
+            const birthDateObj = new Date(birthDate);
+            const today = new Date();
+
+            let age = today.getFullYear() - birthDateObj.getFullYear();
+            const monthDifference = today.getMonth() - birthDateObj.getMonth();
+
+
+            if (monthDifference < 0 || (monthDifference === 0 && today.getDate() < birthDateObj.getDate())) {
+                age--;
+            }
+
+            return age;
+        },
+        async saveChanges() {
+
+            try {
+
+                await PostUserDataService.update(this.editData);
+                this.showEditModal = false;
+                await this.loadUserData();
+
+            } catch (error) {
+
+                console.error("Erro ao atualizar dados do usuário:", error);
+            }
+
+        },
+        async saveAddressChanges() {
+
+            try {
+
+                const addressData = { ...this.editingAddressData, userId: this.editData.id };
+                await PostUserDataService.update(addressData);
+
+                this.editingAddress = false;
+                await this.loadUserData();
+
+            } catch (error) {
+
+                console.error("Erro ao atualizar endereço:", error);
+            }
+
         },
         editAddress(index) {
             this.editingAddress = true;
             this.editingAddressData = { ...this.addresses[index] };
         },
+
         cancelEdit() {
             this.editingAddress = false;
-            this.editingAddressData = {};
         },
-        saveAddressChanges() {
-
-            const index = this.addresses.findIndex(address => address.street === this.editingAddressData.street);
-            if (index !== -1) {
-                this.addresses.splice(index, 1, this.editingAddressData);
-            }
-            this.editingAddress = false;
-            this.editingAddressData = {};
-            console.log("Endereço salvo:", this.addresses);
+        goToHomePage() {
+            this.$router.push('/');
         }
+    },
+    mounted() {
+        this.loadUserData();
     }
 };
 </script>
+
 
 <style scoped>
 .button {
@@ -227,9 +301,9 @@ export default {
     background-color: black;
     padding: 10px;
     border-radius: 10px;
-    font-size: 16px;
-    font-weight: 500;
-    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: 'Segoe UI', sans-serif;
 }
 
 .input {
@@ -238,12 +312,12 @@ export default {
     border: 1px solid #ddd;
     border-radius: 5px;
     font-size: 14px;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Segoe UI', sans-serif;
 }
 
 .nomecompleto__idade {
     color: #000;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Segoe UI', sans-serif;
     font-size: 24px;
     font-style: normal;
     font-weight: 400;
@@ -259,7 +333,7 @@ export default {
 }
 
 .badge {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Segoe UI  ', sans-serif;
     font-size: 14px;
     background-color: #03B1FF;
     color: white;
@@ -279,4 +353,15 @@ export default {
     opacity: 0;
     transform: translateY(-10px);
 }
+
+button {
+    border-radius: 6px; box-shadow: 0px 3px 6px #00000029;padding: 10px 20px 10px 20px;
+}
+
+button:hover {
+    cursor: pointer;
+    background-color: rgb(10, 58, 131);
+    transition: all 0.3s ease-in-out;
+}
+
 </style>

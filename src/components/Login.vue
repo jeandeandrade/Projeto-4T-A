@@ -3,7 +3,6 @@ import { reactive, ref } from "vue";
 import { useRouter } from "vue-router";
 import http from '@/http-common';
 import { useAuth } from '@/stores/auth.js';
-import PostUserDataService from '@/services/PostUserDataService';
 
 const auth = useAuth();
 
@@ -15,56 +14,51 @@ const user = reactive({
 const emailValido = ref(null);
 const mensagem = ref("");
 const corMensagem = ref("");
+const isLoggingIn = ref(false);  // Novo estado para controlar o texto do botão
 const router = useRouter();
 
 async function login() {
+  isLoggingIn.value = true;  // Ativa o estado de "Logando..."
 
   try {
+    const { data } = await http.post('/Auth/signIn', user);
 
-     const { data } = await http.post('/Auth/signIn', user);
- 
     if (data != "") {
-
       const usuario = await http.get('/User', { headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + data } });
 
       auth.setUser(usuario.data.apelido);
       auth.setToken(data);
 
-      setTimeout(() => router.push("/"), 2000);
+      // Aguarda 2.5 segundos antes de redirecionar para a página inicial
+      setTimeout(() => {
+        isLoggingIn.value = false;  // Desativa o estado de "Logando..."
+        router.push("/");
+      }, 2500);
       return;
-      
     }
 
-    errorMessage.value = '';
-
+    mensagem.value = '';
   } catch (error) {
-
-      if (error.response) {
-
+    if (error.response) {
       console.error(error.response.data);
       mensagem.value = error.response.data.message || 'Dados incorretos. Por favor, tente novamente.';
-
     } else if (error.request) {
-
       console.error(error.request);
       mensagem.value = 'Erro de comunicação. Tente novamente.';
-
     } else {
- 
       console.error('Error', error.message);
       mensagem.value = 'Ocorreu um erro. Tente novamente.';
     }
-
     corMensagem.value = 'red';
+  } finally {
+    isLoggingIn.value = false;  // Reseta o estado do botão
   }
 }
-
 </script>
 
 <template>
   <div class="lg:flex lg:bg-black w-screen h-screen">
-    <div
-      class="bg-[#FFF] min:w-[480px] md:h-screen h-[950px] p-4 flex flex-col items-center border shadow-lg justify-center">
+    <div class="bg-[#FFF] min:w-[480px] md:h-screen h-[950px] p-4 flex flex-col items-center border shadow-lg justify-center">
       <h1 class="text-black font-bold text-xl text-center w-[280px] h-[30px] mb-[20px]">
         Iniciar sessão na sua conta
       </h1>
@@ -115,7 +109,7 @@ async function login() {
             type="submit"
             class="flex w-[410px] h-[50px] mb-[41px] bg-black text-white font-semibold items-center justify-center mt-[33px] rounded-lg shadow-custom-blue"
           >
-            Login
+            {{ isLoggingIn ? "Logando..." : "Login" }}
           </button>
           <div class="flex items-center justify-center mb-[33px]">
             <hr class="w-[175px] h-[1px] bg-[#9D9D9D]" />
@@ -139,7 +133,6 @@ async function login() {
     <img class="hidden md:block w-full object-cover md:h-full overflow-visible" src="../assets/images/login23.svg" />
   </div>
 </template>
-
 
 <style scoped>
 button:hover {
