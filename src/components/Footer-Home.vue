@@ -35,7 +35,8 @@
                 <span style="width:70%">Sign up for exclusive offers, original stories, event and more.</span>
                 <div id="email-footer-input" class="flex flex-row justify-between">
                     <input type="email" placeholder="Email Address" class="flex-1">
-                    <button class="img__arrow__button"><img src="../assets/icons/icon-arrow-right.svg" alt="Arrow" class="inline-block w-6 h-6 img-arrow"></button>
+                    <button class="img__arrow__button"><img src="../assets/icons/icon-arrow-right.svg" alt="Arrow"
+                            class="inline-block w-6 h-6 img-arrow"></button>
                 </div>
             </div>
         </div>
@@ -165,7 +166,7 @@
     margin: 0;
 }
 
-.footer__copyright__icons *{
+.footer__copyright__icons * {
     display: flex;
     align-items: center;
 }

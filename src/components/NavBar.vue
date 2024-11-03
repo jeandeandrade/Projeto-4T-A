@@ -1,13 +1,3 @@
-<script setup>
-import { ref } from 'vue';
-
-const showDropdown = ref(false);
-
-function toggleDropdown() {
-    showDropdown.value = !showDropdown.value;
-}
-</script>
-
 <template>
     <nav class="w-[auto] h-[95px] flex-shrink-0 flex items-center justify-between px-12 navbar__styles">
         <div class="flex items-center navbar__logo">
@@ -24,9 +14,14 @@ function toggleDropdown() {
         </ul>
 
         <div class="flex items-center space-x-4 items__nav__signin__signup hidden lg:flex">
-            <a href="/login" class="hover:text-blue-600 items__nav__sign">SIGN IN</a>
+            <!-- Mensagem de boas-vindas se o usuário estiver logado -->
+            <span v-if="userLoggedIn" class="text-black font-semibold">Bem-vindo(a), {{ userName }}!</span>
+            <a v-if="!userLoggedIn" href="/login" class="hover:text-blue-600 items__nav__sign">SIGN IN</a>
             <div class="text__sign__signup">&nbsp;</div>
-            <a href="/registration" class="text-white py-2 px-4 items__nav__signup">SIGN UP FOR FREE</a>
+            <a v-if="!userLoggedIn" href="/registration" class="text-white py-2 px-4 items__nav__signup">SIGN UP FOR FREE</a>
+            <button v-if="userLoggedIn" @click="logout" class="text-red-600 hover:text-red-800">
+                LOG OUT
+            </button>
         </div>
 
         <button @click="toggleDropdown" class="block lg:hidden">
@@ -44,11 +39,44 @@ function toggleDropdown() {
             <li class="items"><a href="#" class="hover:text-blue-600">BUNDLE & SAVE</a></li>
             <li class="items"><a href="#" class="hover:text-blue-600">SHOP BY CATEGORY</a></li>
             <li class="items"><a href="#" class="hover:text-blue-600">SUPPORT</a></li>
-            <li class="items"><a href="#" class="hover:text-blue-600">SIGN IN</a></li>
-            <li class="items"><a href="/registration" class="hover:text-blue-600">SIGN UP FOR FREE</a></li>
+            <li class="items" v-if="!userLoggedIn"><a href="/login" class="hover:text-blue-600">SIGN IN</a></li>
+            <li class="items" v-if="!userLoggedIn"><a href="/registration" class="hover:text-blue-600">SIGN UP FOR FREE</a></li>
+            <li class="items" v-if="userLoggedIn">
+                <span class="text-black font-semibold">Bem-vindo(a), {{ userName }}!</span>
+            </li>
+            <li class="items" v-if="userLoggedIn">
+                <button @click="logout" class="text-red-600 hover:text-red-800">LOG OUT</button>
+            </li>
         </ul>
     </div>
 </template>
+
+<script setup>
+import { ref, onMounted } from 'vue';
+
+const showDropdown = ref(false);
+const userLoggedIn = ref(false);
+const userName = ref('');
+
+function toggleDropdown() {
+    showDropdown.value = !showDropdown.value;
+}
+
+// Função para deslogar
+function logout() {
+    localStorage.removeItem('user');
+    userLoggedIn.value = false;
+    userName.value = '';
+}
+
+onMounted(() => {
+    const user = localStorage.getItem('user');
+    if (user) {
+        userName.value = user.replace(/\"/g, '');
+        userLoggedIn.value = true;
+    }
+});
+</script>
 
 <style scoped>
 .navbar__logo {
@@ -141,7 +169,6 @@ function toggleDropdown() {
     .navbar__logo {
         margin-left: 0%;
     }
-
 }
 
 @media only screen and (max-width: 767px) {
@@ -152,19 +179,13 @@ function toggleDropdown() {
     .items__menu {
         display: none;
     }
-
-    /* https://renatello.com/vuejs-free-hosting/ */
-
 }
 
 @media only screen and (min-width: 481px) and (max-width: 767px) {
-    
     .items__menu {
         display: none;
     }
-
 }
-
 
 @media only screen and (min-width: 768px) and (max-width: 1024px) {
     .items__menu {
@@ -178,14 +199,11 @@ function toggleDropdown() {
     .navbar__styles {
         width: 70%;
     }
-
 }
 
 @media only screen and (min-width: 820px) and (max-width: 1180px) {
-
     .navbar__styles {
         width: 100%;
     }
 }
-
 </style>

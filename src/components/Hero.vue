@@ -9,15 +9,15 @@ const repeatText = ref(Array(30).fill('your text here &#10022;').join(' '));
     <section class="mt-[95px] container mx-auto px-12 grid grid-cols-2 gap-6 relative z-10">
 
       <div class="line1">
-          <div class="line-text">
-            <p v-html="repeatText"></p>
-          </div>
+        <div class="line-text">
+          <p v-html="repeatText"></p>
         </div>
-        <div class="line2">
-          <div class="line-text">
-            <p v-html="repeatText"></p>
-          </div>
+      </div>
+      <div class="line2">
+        <div class="line-text">
+          <p v-html="repeatText"></p>
         </div>
+      </div>
       <div class="col-span-1 mb-5 hero__text__column">
         <div class="hero__text mb-16">
           <h1 class="hero__text__h1">GABINI HEADSET STORE</h1>
@@ -93,7 +93,6 @@ const repeatText = ref(Array(30).fill('your text here &#10022;').join(' '));
 </template>
 
 <style scoped>
-
 .line1 {
   position: absolute;
   width: 100%;
@@ -561,6 +560,7 @@ section {
 }
 
 @media only screen and (min-width: 1024px) and (max-width: 600px) {
+
   .line1,
   .line2 {
     display: none;
@@ -568,6 +568,7 @@ section {
 }
 
 @media only screen and (min-width: 344px) and (max-width: 882px) {
+
   .line1,
   .line2 {
     display: none;
@@ -575,6 +576,7 @@ section {
 }
 
 @media only screen and (min-width: 540px) and (max-width: 720px) {
+
   .line1,
   .line2 {
     display: none;
@@ -582,6 +584,7 @@ section {
 }
 
 @media only screen and (min-width: 720px) and (max-width: 1024px) {
+
   .line1,
   .line2 {
     display: none;
@@ -589,6 +592,7 @@ section {
 }
 
 @media only screen and (min-width: 1000px) and (max-width: 1366px) {
+
   .line1,
   .line2 {
     display: none;

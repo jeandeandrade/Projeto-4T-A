@@ -2,13 +2,15 @@
     <main class="registro">
         <nav>
             <div class="flex mt-7 mb-8 border-b">
-                <p class="relative ml-20 mr-20 pb-3 text-transparent bg-gradient-to-r from-[#03B1FF] to-[#97C4D8] bg-clip-text">
+                <p
+                    class="relative ml-20 mr-20 pb-3 text-transparent bg-gradient-to-r from-[#03B1FF] to-[#97C4D8] bg-clip-text">
                     <b>Meu perfil</b>
-                    <span class="absolute bottom-0 left-0 w-full h-[4px] bg-gradient-to-r from-[#03B1FF] to-[#97C4D8]"></span>
+                    <span
+                        class="absolute bottom-0 left-0 w-full h-[4px] bg-gradient-to-r from-[#03B1FF] to-[#97C4D8]"></span>
                 </p>
             </div>
         </nav>
-        
+
         <!-- Container principal de perfil -->
         <div class="registro grid md:grid-cols-5 md:gap-4 ml-5 mr-5">
             <!-- Imagem de Perfil -->
@@ -21,9 +23,9 @@
                     <h3 class="nomecompleto__idade">Ariane Silva, 19 anos</h3>
                     <button @click="showEditModal = true" class="button">Editar Perfil</button>
                 </div>
-                
+
                 <div class="separator"></div>
-                
+
                 <div class="dados__pessoais grid grid-cols-2 gap-4 p-4 border rounded-lg shadow-md bg-white">
                     <p class="dados__pessoais__bloco">Apelido</p>
                     <p class="dados__pessoais__bloco">E-mail</p>
@@ -34,7 +36,7 @@
                     <p class="dados__pessoais__bloco">Gênero</p>
                     <p class="dados__pessoais__bloco">Telefone</p>
                 </div>
-                
+
                 <!-- Botão Ver todos endereços -->
                 <button @click="showModal = true" class="button w-auto mt-4">Ver todos endereços</button>
             </div>
@@ -53,7 +55,8 @@
             </div>
 
             <!-- Outros Endereços -->
-            <div class="enderecos col-span-5 mt-4 p-4 grid grid-cols-3 gap-4 border rounded-lg shadow-md bg-white h-full">
+            <div
+                class="enderecos col-span-5 mt-4 p-4 grid grid-cols-3 gap-4 border rounded-lg shadow-md bg-white h-full">
                 <div>
                     <h3 class="text-lg font-semibold">Endereço Secundário 1</h3>
                     <p><strong>Rua:</strong> Secundária, 456</p>
@@ -111,14 +114,16 @@
                                     <input type="text" v-model="editingAddressData.zip" class="input" />
                                 </div>
                             </div>
-                            <button type="button" @click="cancelEdit" class="button mt-4 w-full bg-gray-500">Cancelar</button>
+                            <button type="button" @click="cancelEdit"
+                                class="button mt-4 w-full bg-gray-500">Cancelar</button>
                             <button type="submit" class="button mt-2 w-full bg-blue-500">Salvar Alterações</button>
                         </form>
                     </div>
                     <div v-else>
                         <div class="space-y-4">
                             <!-- Endereços dentro do modal -->
-                            <div v-for="(address, index) in addresses" :key="index" class="p-4 border rounded-lg shadow-sm">
+                            <div v-for="(address, index) in addresses" :key="index"
+                                class="p-4 border rounded-lg shadow-sm">
                                 <p><strong>Rua:</strong> {{ address.street }}</p>
                                 <p><strong>Bairro:</strong> {{ address.neighborhood }}</p>
                                 <p><strong>Complemento:</strong> {{ address.complement }}</p>
@@ -135,7 +140,8 @@
 
         <!-- Modal para editar perfil -->
         <transition name="modal-fade-slide">
-            <div v-if="showEditModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+            <div v-if="showEditModal"
+                class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
                 <div class="modal-content bg-white rounded-lg w-11/12 md:w-1/2 p-5">
                     <h3 class="text-xl font-bold mb-4">Editar Perfil</h3>
                     <form @submit.prevent="saveChanges">
@@ -157,7 +163,8 @@
                                 <input type="text" v-model="editData.phone" class="input" />
                             </div>
                         </div>
-                        <button type="button" @click="showEditModal = false" class="button mt-4 w-full bg-gray-500">Fechar</button>
+                        <button type="button" @click="showEditModal = false"
+                            class="button mt-4 w-full bg-gray-500">Fechar</button>
                         <button type="submit" class="button mt-2 w-full bg-blue-500">Salvar Alterações</button>
                     </form>
                 </div>
@@ -201,7 +208,7 @@ export default {
             this.editingAddressData = {};
         },
         saveAddressChanges() {
-            
+
             const index = this.addresses.findIndex(address => address.street === this.editingAddressData.street);
             if (index !== -1) {
                 this.addresses.splice(index, 1, this.editingAddressData);
@@ -266,6 +273,7 @@ export default {
 .modal-fade-slide-leave-active {
     transition: opacity 0.3s ease, transform 0.3s ease;
 }
+
 .modal-fade-slide-enter-from,
 .modal-fade-slide-leave-to {
     opacity: 0;
