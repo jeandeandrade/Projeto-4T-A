@@ -39,7 +39,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div class="offer columns-2"> 
+  <div class="offer columns-2">
     <div class="desconto__offer">
       <h1>Save 20% or more on Headset</h1>
       <h3>Enjoy for a limited time</h3>
@@ -136,7 +136,8 @@ onBeforeUnmount(() => {
   position: absolute;
 }
 
-.flip-enter-active, .flip-leave-active {
+.flip-enter-active,
+.flip-leave-active {
   transition: transform 0.6s ease, opacity 0.6s ease;
 }
 
@@ -197,17 +198,21 @@ onBeforeUnmount(() => {
   .offer__fone {
     display: none;
   }
+
   .desconto__offer h1 {
     font-size: 4em;
   }
+
   .desconto__offer h3 {
     font-size: 1em;
   }
+
   .number__offer {
     font-size: 5em;
   }
-  .offer__button{
-      font-size: 1em;
+
+  .offer__button {
+    font-size: 1em;
   }
 }
 
@@ -215,20 +220,25 @@ onBeforeUnmount(() => {
   .offer__fone {
     display: none;
   }
+
   .desconto__offer h1 {
     font-size: 3em;
   }
+
   .desconto__offer h3 {
     font-size: 1em;
   }
-  .number__container__offer{
-      height: 80px;
+
+  .number__container__offer {
+    height: 80px;
   }
+
   .number__offer {
     font-size: 4em;
   }
-  .offer__button{
-      font-size: 1em;
+
+  .offer__button {
+    font-size: 1em;
   }
 }
 
@@ -236,26 +246,33 @@ onBeforeUnmount(() => {
   .offer {
     padding: 15px;
   }
+
   .columns-2 {
     columns: 1;
   }
+
   .offer__fone {
     display: none;
   }
+
   .desconto__offer h1 {
     font-size: 2.7em;
   }
+
   .desconto__offer h3 {
     font-size: 0.7em;
   }
-  .number__container__offer{
-      height: 80px;
+
+  .number__container__offer {
+    height: 80px;
   }
+
   .number__offer {
     font-size: 4em;
   }
-  .offer__button{
-      font-size: 0.7em;
+
+  .offer__button {
+    font-size: 0.7em;
   }
 }
 </style>
