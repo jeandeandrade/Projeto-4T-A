@@ -19,9 +19,14 @@
             <a v-if="!userLoggedIn" href="/login" class="hover:text-blue-600 items__nav__sign">SIGN IN</a>
             <div class="text__sign__signup">&nbsp;</div>
             <a v-if="!userLoggedIn" href="/registration" class="text-white py-2 px-4 items__nav__signup">SIGN UP FOR FREE</a>
-            <button v-if="userLoggedIn" @click="logout" class="text-red-600 hover:text-red-800">
-                LOG OUT
-            </button>
+            <div v-if="userLoggedIn" class="flex items-center">
+                <a href="/profile" class="text-blue-800 hover:text-blue-600 items__nav__signup">Meu perfil&nbsp;&nbsp;</a>
+                <div class="text__sign__signup">&nbsp;</div>
+                <button @click="logout" class="text-red-600 hover:text-red-800">
+                    &nbsp;&nbsp;
+                    <span class="items__nav__logout text-red-600">LOG OUT</span>
+                </button>
+            </div>
         </div>
 
         <button @click="toggleDropdown" class="block lg:hidden">
@@ -42,10 +47,12 @@
             <li class="items" v-if="!userLoggedIn"><a href="/login" class="hover:text-blue-600">SIGN IN</a></li>
             <li class="items" v-if="!userLoggedIn"><a href="/registration" class="hover:text-blue-600">SIGN UP FOR FREE</a></li>
             <li class="items" v-if="userLoggedIn">
-                <span class="text-black font-semibold">Bem-vindo(a), {{ userName }}!</span>
+                <a href="/profile" class="text-blue-800 hover:text-blue-600">Meu perfil</a>
+                <span class="text-blue-800 mx-2">|</span>
+                <button @click="logout" class="text-red-600 hover:text-red-800">LOG OUT</button>
             </li>
             <li class="items" v-if="userLoggedIn">
-                <button @click="logout" class="text-red-600 hover:text-red-800">LOG OUT</button>
+                <span class="text-black font-semibold">Bem-vindo(a), {{ userName }}!</span>
             </li>
         </ul>
     </div>
@@ -145,6 +152,16 @@ onMounted(() => {
     text-transform: uppercase;
 }
 
+.items__nav__logout {
+    text-align: center;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 24px;
+    letter-spacing: -0.14px;
+    text-transform: uppercase;
+}
 .dropdown__menu {
     background-color: #FFF;
     border: 1px solid rgba(217, 217, 227, 0.60);
