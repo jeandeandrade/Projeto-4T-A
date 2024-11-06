@@ -58,7 +58,8 @@ async function login() {
 
 <template>
   <div class="lg:flex lg:bg-black w-screen h-screen">
-    <div class="bg-[#FFF] min:w-[480px] md:h-screen h-[950px] p-4 flex flex-col items-center border shadow-lg justify-center">
+    <div
+      class="bg-[#FFF] min:w-[480px] md:h-screen h-[950px] p-4 flex flex-col items-center border shadow-lg justify-center">
       <h1 class="text-black font-bold text-xl text-center w-[280px] h-[30px] mb-[20px]">
         Iniciar sessão na sua conta
       </h1>
@@ -105,10 +106,8 @@ async function login() {
           </a>
         </div>
         <div>
-          <button
-            type="submit"
-            class="flex w-[410px] h-[50px] mb-[41px] bg-black text-white font-semibold items-center justify-center mt-[33px] rounded-lg shadow-custom-blue"
-          >
+          <button type="submit"
+            class="flex w-[410px] h-[50px] mb-[41px] bg-black text-white font-semibold items-center justify-center mt-[33px] rounded-lg shadow-custom-blue">
             {{ isLoggingIn ? "Logando..." : "Login" }}
           </button>
           <div class="flex items-center justify-center mb-[33px]">
@@ -116,14 +115,17 @@ async function login() {
             <span class="mx-4 text-[#9D9D9D]">OU</span>
             <hr class="w-[175px] h-[1px] bg-[#9D9D9D]" />
           </div>
-          <button type="button"
-            class="flex w-[410px] h-[50px] mb-[41px] bg-black text-white font-semibold items-center justify-center mt-[33px] rounded-lg shadow-custom-blue">
-            <a href="/registration">Registre-se</a>
-          </button>
-          <button type="button"
-            class="flex w-[410px] h-[50px] mb-[41px] bg-black text-white font-semibold items-center justify-center mt-[33px] rounded-lg shadow-custom-blue">
-            <a href="/">Voltar a página inicial</a>
-          </button>
+
+          <a href="/registration"><button type="button"
+              class="flex w-[410px] h-[50px] mb-[41px] bg-black text-white font-semibold items-center justify-center mt-[33px] rounded-lg shadow-custom-blue">
+              Registre-se
+            </button></a>
+
+          <a href="/">
+            <button type="button"
+              class="flex w-[410px] h-[50px] mb-[41px] bg-black text-white font-semibold items-center justify-center mt-[33px] rounded-lg shadow-custom-blue">
+              Voltar a página inicial
+            </button></a>
         </div>
         <p v-if="mensagem" :style="{ color: corMensagem }" class="text-center mt-4">
           {{ mensagem }}
