@@ -1,80 +1,3 @@
-<script setup>
-import { ref, onMounted } from 'vue';
-import axios from 'axios';
-
-const users = ref([]);
-const newUser = ref({
-  nome: '',
-  apelido: '',
-  email: '',
-  senha: '',
-  cpf: '',
-  dataNascimento: '',
-  genero: '',
-  telefone: '',
-  endereco: []
-});
-
-const createUser = async () => {
-  
-  try {
-
-    const response = await axios.post('https://672017f0e7a5792f053074c2.mockapi.io/apa/user', newUser.value);
-    users.value.push(response.data);
-
-  } catch (error) {
-
-    console.error('Erro ao criar usuário:', error);
-
-  }
-
-};
-
-const isVisible = ref(false);
-
-function formAddress() {
-
-  const { nome, apelido, email, senha, cpf, dataNascimento, genero, telefone } = newUser.value
-
-  if (nome && apelido && email && senha && cpf && dataNascimento && genero && telefone) {
-    isVisible.value = true;
-  }
-
-}
-
-function formRegistration() {
-  isVisible.value = false;
-}
-
-const listaEndereco = ref({
-  nomeRua: '',
-  bairro: '',
-  cep: '',
-  complemento: '',
-  cidade: '',
-  numeroResidencia: ''
-});
-
-function adicionarEndereco() {
-  newUser.value.endereco.push({ ...listaEndereco.value });
-  listaEndereco.value.nomeRua = '';
-  listaEndereco.value.bairro = '';
-  listaEndereco.value.cep = '';
-  listaEndereco.value.complemento = '';
-  listaEndereco.value.cidade = '';
-  listaEndereco.value.numeroResidencia = '';
-}
-
-const isVisibleAddress = ref(false);
-
-function mostraEndereco() {
-  isVisibleAddress.value = true;
-}
-function ocultaEndereco() {
-  isVisibleAddress.value = false;
-}
-</script>
-
 <template>
   <main class="registro" v-if="!isVisible">
     <nav>
@@ -139,7 +62,7 @@ function ocultaEndereco() {
         <div class="flex flex-col col-span-1 gap-2 max-w-[36rem] w-full mx-auto">
           <label>CPF</label>
           <div class="flex">
-            <input type="text" v-model="newUser.cpf" id="email" placeholder="Ex: 000.000.000-00" class="w-full campos"
+            <input type="text" v-model="newUser.cpf" id="cpf" placeholder="Ex: 000.000.000-00" class="w-full campos"
               required></input>
             <svg class="h-11 w-11 icons" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
               stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -305,7 +228,7 @@ function ocultaEndereco() {
             <th class="py-2 px-4 border-b">Número da residência</th>
           </tr>
         </thead>
-        <tbody v-for="dado in newUser.endereco" :key="dado.nomeRua" class="text-center">
+        <tbody v-for="dado in newUser.enderecos" :key="dado.nomeRua" class="text-center">
           <tr class="hover:bg-gray-100">
             <td class="py-2 px-4 border-b">{{ dado.nomeRua }}</td>
             <td class="py-2 px-4 border-b">{{ dado.bairro }}</td>
@@ -369,3 +292,81 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   }
 }
 </style>
+
+
+<script setup>
+import { ref, onMounted } from 'vue';
+import axios from 'axios';
+
+const users = ref([]);
+const newUser = ref({
+  nome: '',
+  apelido: '',
+  email: '',
+  senha: '',
+  cpf: '',
+  dataNascimento: '',
+  genero: '',
+  telefone: '',
+  enderecos: []
+});
+
+const createUser = async () => {
+  
+  try {
+
+    const response = await axios.post('https://localhost:7222/api/User', newUser.value);
+    users.value.push(response.data);
+
+  } catch (error) {
+
+    console.error('Erro ao criar usuário:', error);
+
+  }
+
+};
+
+const isVisible = ref(false);
+
+function formAddress() {
+
+  const { nome, apelido, email, senha, cpf, dataNascimento, genero, telefone } = newUser.value
+
+  if (nome && apelido && email && senha && cpf && dataNascimento && genero && telefone) {
+    isVisible.value = true;
+  }
+
+}
+
+function formRegistration() {
+  isVisible.value = false;
+}
+
+const listaEndereco = ref({
+  nomeRua: '',
+  bairro: '',
+  cep: '',
+  complemento: '',
+  cidade: '',
+  numeroResidencia: ''
+});
+
+function adicionarEndereco() {
+  newUser.value.enderecos.push({ ...listaEndereco.value });
+  listaEndereco.value.nomeRua = '';
+  listaEndereco.value.bairro = '';
+  listaEndereco.value.cep = '';
+  listaEndereco.value.complemento = '';
+  listaEndereco.value.cidade = '';
+  listaEndereco.value.numeroResidencia = '';
+}
+
+const isVisibleAddress = ref(false);
+
+function mostraEndereco() {
+  isVisibleAddress.value = true;
+}
+function ocultaEndereco() {
+  isVisibleAddress.value = false;
+}
+</script>

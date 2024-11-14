@@ -56,27 +56,27 @@
         </div>
 
         <!-- Endereço Principal -->
-        <div v-if="addresses.length > 0"
+        <div v-if="enderecos.length > 0"
             class="enderecos col-span-5 mt-4 p-4 border rounded-lg shadow-md bg-white h-full"
             style="width: 98%; margin: 0 auto; margin-top: 10px;">
             <h3 class="text-lg font-semibold">
                 Endereço principal
                 <span class="badge">Principal</span>
             </h3>
-            <p><strong>Rua:</strong> {{ addresses[0].nomeRua }}</p>
-            <p><strong>Bairro:</strong> {{ addresses[0].bairro }}</p>
-            <p><strong>Complemento:</strong> {{ addresses[0].complemento }}</p>
-            <p><strong>Cidade:</strong> {{ addresses[0].cidade }}</p>
-            <p><strong>CEP:</strong> {{ addresses[0].cep }}</p>
-            <p><strong>Número da Residência:</strong> {{ addresses[0].numeroResidencia }}</p>
+            <p><strong>Rua:</strong> {{ enderecos[0].nomeRua }}</p>
+            <p><strong>Bairro:</strong> {{ enderecos[0].bairro }}</p>
+            <p><strong>Complemento:</strong> {{ enderecos[0].complemento }}</p>
+            <p><strong>Cidade:</strong> {{ enderecos[0].cidade }}</p>
+            <p><strong>CEP:</strong> {{ enderecos[0].cep }}</p>
+            <p><strong>Número da Residência:</strong> {{ enderecos[0].numeroResidencia }}</p>
         </div>
 
 
         <!-- Outros Endereços -->
-        <div v-if="addresses.length > 1"
+        <div v-if="enderecos.length > 1"
             class="enderecos col-span-5 mt-4 p-4 grid grid-cols-3 gap-4 border rounded-lg shadow-md bg-white h-full"
             style="width: 98%; margin: 0 auto; margin-top: 10px;">
-            <div v-for="(address, index) in addresses.slice(1)" :key="index">
+            <div v-for="(address, index) in enderecos.slice(1)" :key="index">
                 <h3 class="text-lg font-semibold">Endereço Secundário {{ index + 1 }}</h3>
                 <p><strong>Rua:</strong> {{ address.nomeRua }}</p>
                 <p><strong>Bairro:</strong> {{ address.bairro }}</p>
@@ -129,7 +129,7 @@
                     <div v-else>
                         <div class="space-y-4">
                             <!-- Endereços dentro do modal -->
-                            <div v-for="(address, index) in addresses" :key="index"
+                            <div v-for="(address, index) in enderecos" :key="index"
                                 class="p-4 border rounded-lg shadow-sm">
                                 <p><strong>Rua:</strong> {{ address.nomeRua }}</p>
                                 <p><strong>Bairro:</strong> {{ address.bairro }}</p>
@@ -203,7 +203,7 @@ export default {
                 genero: '',
                 telefone: ''
             },
-            addresses: [],
+            enderecos: [],
             showModal: false,
             showEditModal: false,
             editingAddress: false,
@@ -224,7 +224,7 @@ export default {
 
                 const response = await PostUserDataService.getUser();
                 this.editData = response.data;
-                this.addresses = response.data.addresses;
+                this.enderecos = response.data.enderecos;
 
             } catch (error) {
                 console.error("Erro ao carregar dados do usuário:", error);
@@ -278,7 +278,7 @@ export default {
         },
         editAddress(index) {
             this.editingAddress = true;
-            this.editingAddressData = { ...this.addresses[index] };
+            this.editingAddressData = { ...this.enderecos[index] };
         },
 
         cancelEdit() {
