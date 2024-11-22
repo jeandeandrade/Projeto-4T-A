@@ -14,24 +14,23 @@ const user = reactive({
 const emailValido = ref(null);
 const mensagem = ref("");
 const corMensagem = ref("");
-const isLoggingIn = ref(false);  // Novo estado para controlar o texto do botão
+const isLoggingIn = ref(false);
 const router = useRouter();
 
 async function login() {
-  isLoggingIn.value = true;  // Ativa o estado de "Logando..."
+  isLoggingIn.value = true;
 
   try {
     const { data } = await http.post('/Auth/signIn', user);
 
     if (data != "") {
-      const usuario = await http.get('/User', { headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + data } });
+      const usuario = await http.get('/User', { headers: { 'accept': 'text/plain', 'Authorization': 'Bearer ' + data } });
 
       auth.setUser(usuario.data.apelido);
       auth.setToken(data);
 
-      // Aguarda 2.5 segundos antes de redirecionar para a página inicial
       setTimeout(() => {
-        isLoggingIn.value = false;  // Desativa o estado de "Logando..."
+        isLoggingIn.value = false
         router.push("/");
       }, 2500);
       return;
