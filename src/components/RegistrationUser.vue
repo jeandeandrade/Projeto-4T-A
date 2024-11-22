@@ -15,9 +15,23 @@
         </div>
       </nav>
       <div class="registro grid md:grid-cols-5 md:gap-4 ml-5 mr-5">
-        <div class="col-span-1 imgPerfil">
-          <img src="../assets/images/fotoPerfil.png" alt="" class="mx-auto">
+        <div class="col-span-1 imgPerfil relative">
+          <!-- Imagem de perfil -->
+          <img src="../assets/images/fotoPerfil.png" alt="Foto de perfil"
+            class="mx-auto rounded-full w-32 h-32 object-cover cursor-pointer">
+
+          <!-- Input de arquivo oculto -->
+          <input type="file" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" @change="onFileChange" />
+
+          <!-- Botão Upload -->
+          <div class="text-center mt-2">
+            <button type="button" @click="uploadImage"
+              class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition">
+              Upload
+            </button>
+          </div>
         </div>
+
         <form class="col-span-4 grid md:grid-cols-2 gap-4">
           <div class="flex flex-col col-span-1 gap-2 max-w-[36rem] w-full mx-auto">
             <label>Nome completo</label>
@@ -65,8 +79,11 @@
           <div class="flex flex-col col-span-1 gap-2 max-w-[36rem] w-full mx-auto">
             <label>CPF</label>
             <div class="flex">
-              <input type="text" v-model="newUser.cpf" id="email" placeholder="Ex: 000.000.000-00" class="w-full campos"
-                required></input>
+              <input type="text" id="cpf" v-model="newUser.cpf" v-mask="'###.###.###-##'" @blur="validateCpf" :class="[
+                'w-full',
+                'campos',
+                { 'border-red-500': !isCpfValid && newUser.cpf !== '' }
+              ]" placeholder="Digite o CPF" />
               <svg class="h-11 w-11 icons" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
                 stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                 <path stroke="none" d="M0 0h24v24H0z" />
@@ -101,10 +118,10 @@
                 <path d="M2 12l1.5 -2a11 11 0 0 1 17 0l1.5 2" />
               </svg>
             </div>
-            <label>Telefone</label>
+            <label>Celular</label>
             <div class="flex">
-              <input type="text" v-model="newUser.telefone" id="telefone" placeholder="Ex: (00) 0000-0000"
-                class="w-full campos" required></input>
+              <input type="text" v-model="newUser.telefone" v-mask="'(##) #####-####'" id="telefone"
+                placeholder="Ex: (00) 0000-0000" class="w-full campos" required></input>
               <svg class="h-11 w-11 icons" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
                 stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                 <path stroke="none" d="M0 0h24v24H0z" />
@@ -113,13 +130,18 @@
               </svg>
             </div>
           </div>
+          <span v-if="!isCpfValid && newUser.cpf !== ''" class="text-red-500">
+            CPF inválido. Por favor, verifique e tente novamente.
+          </span>
           <div class="text-right col-span-2">
             <router-link to="/"><button class="button"><b>Voltar ao início</b></button></router-link>
-            <button type="submit" class="button" @click="formAddress"><b>Próximo Passo</b></button>
+            <button type="submit" class="button" @click="formAddress" :disabled="!isCpfValid"><b>Próximo
+                Passo</b></button>
           </div>
         </form>
       </div>
     </main>
+
     <main class="cadastroenderecos class__border__box bg-[#FFF]" v-if="isVisible">
       <nav>
         <div class="flex mt-7 mb-8 border-b">
@@ -166,13 +188,18 @@
             <label>CEP</label>
             <div class="flex">
               <input type="text" name="cep" v-model="listaEnderecos.cep" placeholder="Ex: 00000-000"
-                class="w-full campos" required></input>
-              <svg class="h-11 w-11 icons" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                <path stroke="none" d="M0 0h24v24H0z" />
-                <circle cx="12" cy="11" r="3" />
-                <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 0 1 -2.827 0l-4.244-4.243a8 8 0 1 1 11.314 0z" />
-              </svg>
+                class="w-full campos" required>
+              </input>
+
+              <button type="button" @click="consultarCep"
+                class="h-11 w-11 bg-blue-500 text-white rounded flex items-center justify-center">
+                <svg class="h-6 w-6" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                  fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <path stroke="none" d="M0 0h24v24H0z" />
+                  <path
+                    d="M11 4C6.02944 4 2 8.02944 2 12C2 15.9706 6.02944 20 11 20C13.1783 20 15.2736 19.1484 16.7424 17.9923L21.7071 22L22 21.7071L17.9923 16.7424C19.1484 15.2736 20 13.1783 20 11C20 8.02944 15.9706 4 11 4Z" />
+                </svg>
+              </button>
             </div>
           </div>
           <div class="flex flex-col col-span-1 gap-2 max-w-[36rem] w-full mx-auto">
@@ -246,7 +273,7 @@
 
       <div class="text-right mt-14">
         <button class="button" @click="formRegistration"><b>Voltar a etapa anterior</b></button>
-        <router-link to="/"><button class="button" @click="createUser"><b>Salvar</b></button></router-link>
+        <button class="button" @click="createUser"><b>Salvar</b></button>
       </div>
     </main>
   </div>
@@ -266,7 +293,7 @@
 .class__border__box {
   border-radius: 6px !important;
   box-shadow: 3px 5px 7px 4px #00000029 !important;
-  padding: 50px 20px 10px 20px !important;
+  padding: 50px 56px 10px 55px !important;
 }
 
 input[type="date"]::-webkit-calendar-picker-indicator {
@@ -302,6 +329,10 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   margin-bottom: 20px;
 }
 
+.border-red-500 {
+  border: 2px solid #f87171;
+}
+
 @media (max-width: 768px) {
   .button {
     width: 250px;
@@ -316,11 +347,13 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 <script setup>
 import { ref, onMounted } from 'vue';
-import { useRouter } from "vue-router";
-import http from '@/http-common';
+import { mask } from 'vue-the-mask';
 import PostUserDataService from '@/services/PostUserDataService';
 
 const users = ref([]);
+const isVisible = ref(false);
+var newImage = ref();
+
 const newUser = ref({
   nome: '',
   apelido: '',
@@ -334,24 +367,24 @@ const newUser = ref({
 });
 
 const createUser = async () => {
-
   try {
 
     const { response } = await PostUserDataService.create(newUser.value);
+    console.log(response);
     users.value.push(response.data);
 
   } catch (error) {
 
-    console.error('Erro ao criar usuário:', error);
+    alert(error);
+    return false;
+
   }
 
 };
 
-const isVisible = ref(false);
-
 function formAddress() {
 
-  const { nome, apelido, email, senha, cpf, dataNascimento, genero, telefone } = newUser.value
+  const { nome, apelido, email, senha, cpf, dataNascimento, genero, telefone } = newUser.value;
 
   if (nome && apelido && email && senha && cpf && dataNascimento && genero && telefone) {
     isVisible.value = true;
@@ -373,21 +406,130 @@ const listaEnderecos = ref({
 });
 
 function adicionarenderecos() {
+
   newUser.value.enderecos.push({ ...listaEnderecos.value });
   listaEnderecos.value.nomeRua = '';
+
   listaEnderecos.value.bairro = '';
   listaEnderecos.value.cep = '';
+
   listaEnderecos.value.complemento = '';
   listaEnderecos.value.cidade = '';
+
   listaEnderecos.value.numeroResidencia = '';
+
 }
 
 const isVisibleAddress = ref(false);
 
 function mostraenderecos() {
+
   isVisibleAddress.value = true;
 }
+
 function ocultaenderecos() {
+
   isVisibleAddress.value = false;
+}
+
+function onFileChange(event) {
+
+  const target = event.target;
+
+  if (target && target.files && target.files.length > 0) {
+
+    newImage = target.files[0];
+  }
+
+  const formData = new FormData();
+  formData.append('file', newImage);
+
+  console.log(formData);
+}
+
+async function uploadImage() {
+
+  try {
+
+    if (!newImage) return;
+    const formData = new FormData();
+
+    formData.append('file', newImage);
+    console.log(formData);
+
+    await api.post(`/profile/${productId}/UploadImage`, formData, {
+
+      headers: { 'Content-Type': 'multipart/form-data' },
+    });
+
+  } catch (error) {
+
+    alert('Falha ao salvar imagem do perfil');
+  }
+}
+
+const isCpfValid = ref(true);
+
+function validateCpf() {
+
+  const cpf = newUser.value.cpf.replace(/\D/g, '');
+  isCpfValid.value = checkCpf(cpf);
+}
+
+function checkCpf(cpf) {
+
+  if (cpf.length !== 11 || /^(\d)\1+$/.test(cpf)) return false;
+  let sum, rest;
+
+  sum = 0;
+  for (let i = 1; i <= 9; i++) sum += parseInt(cpf.substring(i - 1, i)) * (11 - i);
+
+  rest = (sum * 10) % 11;
+  if (rest === 10 || rest === 11) rest = 0;
+
+  if (rest !== parseInt(cpf.substring(9, 10))) return false;
+  sum = 0;
+  
+  for (let i = 1; i <= 10; i++) sum += parseInt(cpf.substring(i - 1, i)) * (12 - i);
+  rest = (sum * 10) % 11;
+
+  if (rest === 10 || rest === 11) rest = 0;
+  return rest === parseInt(cpf.substring(10, 11));
+}
+
+async function consultarCep() {
+
+  const cep = listaEnderecos.value.cep.replace(/\D/g, '');
+
+  if (cep.length === 8) {
+
+    try {
+
+      const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+      const data = await response.json();
+
+      if (!data.erro) {
+        
+        listaEnderecos.value.nomeRua = data.logradouro;
+        listaEnderecos.value.bairro = data.bairro;
+        listaEnderecos.value.cidade = data.localidade;
+        listaEnderecos.value.uf = data.uf;
+
+      } else {
+
+        alert('CEP não encontrado');
+      }
+
+    } catch (error) {
+
+      alert('Erro ao buscar o CEP');
+
+    }
+
+  } else {
+
+    alert('CEP inválido');
+  }
+
 }
 </script>
