@@ -5,6 +5,7 @@ import RegistrationUser from "../views/RegistrationUserView.vue";
 import BoxSwipe from "@/components/BoxSwipe.vue";
 import Login from "@/views/LoginView.vue";
 import UserProfile from "@/views/UserProfileView.vue";
+import ProductPage from "@/components/ProductPage.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -28,6 +29,11 @@ const router = createRouter({
       path: "/profile",
       name: "profile",
       component: UserProfile,
+    },
+    {
+      path: "/products",
+      name: "products",
+      component: ProductPage,
     },
   ],
 });
