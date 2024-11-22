@@ -273,7 +273,7 @@
 
       <div class="text-right mt-14">
         <button class="button" @click="formRegistration"><b>Voltar a etapa anterior</b></button>
-        <button class="button" @click="createUser"><b>Salvar</b></button>
+        <button class="button" @submit.prevent="createUser"><b>Salvar</b></button>
       </div>
     </main>
   </div>
@@ -344,10 +344,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 </style>
 
-
 <script setup>
-import { ref, onMounted } from 'vue';
-import { mask } from 'vue-the-mask';
+import { ref } from 'vue';
 import PostUserDataService from '@/services/PostUserDataService';
 
 const users = ref([]);
@@ -444,7 +442,6 @@ function onFileChange(event) {
   const formData = new FormData();
   formData.append('file', newImage);
 
-  console.log(formData);
 }
 
 async function uploadImage() {
