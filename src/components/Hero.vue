@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue';
 
-const repeatText = ref(Array(30).fill('your text here &#10022;').join(' '));
+const repeatText = ref(Array(30).fill('BLACK FRIDAY DA GABINI PRODUTOS COM 40% DE DESCONTO!! &#10022;').join(' '));
 </script>
 
 <template class="hero__principal__div">

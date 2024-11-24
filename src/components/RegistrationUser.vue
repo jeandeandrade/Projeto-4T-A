@@ -79,7 +79,7 @@
           <div class="flex flex-col col-span-1 gap-2 max-w-[36rem] w-full mx-auto">
             <label>CPF</label>
             <div class="flex">
-              <input type="text" id="cpf" v-model="newUser.cpf" v-mask="'###.###.###-##'" @blur="validateCpf" :class="[
+              <input type="text" id="cpf" v-model="newUser.cpf" @blur="validateCpf" :class="[
                 'w-full',
                 'campos',
                 { 'border-red-500': !isCpfValid && newUser.cpf !== '' }

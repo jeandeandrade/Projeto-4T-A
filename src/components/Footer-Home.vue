@@ -10,29 +10,29 @@
         <div class="flex flex-row footer-items">
             <div class="flex flex-1 flex-col gap-2">
                 <span class="footer-title"><strong>Menu</strong></span>
-                <a href="">Home</a>
-                <a href="">About Us</a>
-                <a href="">Product</a>
-                <a href="">Pricing</a>
+                <a href="">Página Inicial</a>
+                <a href="">Sobre nós</a>
+                <a href="">Produtos</a>
+                <a href="">Valores</a>
             </div>
             <div class="flex flex-1 flex-col gap-2">
-                <span class="footer-title"><strong>Resources</strong></span>
-                <a href="">Forum</a>
-                <a href="">Support</a>
-                <a href="">Partners</a>
-                <a href="">Events</a>
+                <span class="footer-title"><strong>Recursos</strong></span>
+                <a href="">Fórum</a>
+                <a href="">Suporte ao cliente</a>
+                <a href="">Patrocínios</a>
+                <a href="">Eventos</a>
             </div>
             <div class="flex flex-1 flex-col gap-2">
-                <span class="footer-title"><strong>My Account</strong></span>
-                <a href="">My Orders</a>
+                <span class="footer-title"><strong>Minha conta</strong></span>
+                <a href="">Meus pedidos</a>
                 <a href="">FAQ</a>
-                <a href="">Sales conditions</a>
-                <a href="">Contact</a>
-                <a href="">Legal mentions</a>
+                <a href="">Condições de venda</a>
+                <a href="">Contato</a>
+                <a href="">Mençoes legais</a>
             </div>
             <div class="flex flex-1 flex-col gap-2 subscribe__and__email">
-                <span class="footer-title"><strong>Subscribe to the Newsletter</strong></span>
-                <span style="width:70%">Sign up for exclusive offers, original stories, event and more.</span>
+                <span class="footer-title"><strong>Se inscreva na nossa newsletter</strong></span>
+                <span style="width:70%">Registre para ter acesso a ofertas exclusivas, histórias originais, eventos e muito mais.</span>
                 <div id="email-footer-input" class="flex flex-row justify-between">
                     <input type="email" placeholder="Email Address" class="flex-1">
                     <button class="img__arrow__button"><img src="../assets/icons/icon-arrow-right.svg" alt="Arrow"
@@ -47,12 +47,12 @@
 
         <div class="flex flex-row flex-1 justify-between footer__copyright__icons">
             <div class="flex-1">
-                <span>© 2024 Gabini Headset Store. - All Rights Reserved</span>
+                <span>© 2024 Gabini Headset Store. - Todos os direitos reservados</span>
             </div>
             <div class="flex flex-1 flex-row justify-center gap-10">
-                <a href="" class="underline">PRODUCTS</a>
-                <a href="" class="underline">PRIVACY POLICY</a>
-                <a href="" class="underline">CUSTOMER SERVICE</a>
+                <a href="" class="underline">Produtos</a>
+                <a href="" class="underline">Política de privacidade</a>
+                <a href="" class="underline">Serviços do consumidor</a>
             </div>
             <div class="flex-1 flex flex-row gap-2 justify-end footer-icons">
                 <span class="footer-icon">

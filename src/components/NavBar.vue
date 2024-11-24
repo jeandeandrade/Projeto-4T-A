@@ -13,19 +13,19 @@
     <!-- Menu normal -->
     <ul class="items__nav hidden lg:flex">
       <li class="items__menu">
-        <a href="#" class="hover:text-blue-600">HOME</a>
+        <a href="#" class="hover:text-blue-600">Página Inicial</a>
       </li>
       <li class="items__menu">
-        <a href="#" class="hover:text-blue-600">SALE</a>
+        <a href="#" class="hover:text-blue-600">Testemunhas</a>
       </li>
       <li class="items__menu">
-        <a href="#" class="hover:text-blue-600">BUNDLE & SAVE</a>
+        <a href="#" class="hover:text-blue-600">RODUTOS EM PROMOÇÃO</a>
       </li>
       <li class="items__menu">
-        <a href="/products" class="hover:text-blue-600">SHOP BY CATEGORY</a>
+        <a href="/products" class="hover:text-blue-600">PRODUTOS POR CATEGORIA</a>
       </li>
       <li class="items__menu">
-        <a href="#" class="hover:text-blue-600">SUPPORT</a>
+        <a href="#" class="hover:text-blue-600">SUPORTE</a>
       </li>
     </ul>
 
@@ -40,14 +40,14 @@
         v-if="!userLoggedIn"
         href="/login"
         class="hover:text-blue-600 items__nav__sign"
-        >SIGN IN</a
+        >LOGIN</a
       >
       <div class="text__sign__signup">&nbsp;</div>
       <a
         v-if="!userLoggedIn"
         href="/registration"
         class="text-white py-2 px-4 items__nav__signup"
-        >SIGN UP FOR FREE</a
+        >REGISTRE-SE DE GRAÇA</a
       >
       <div v-if="userLoggedIn" class="flex items-center">
         <a
