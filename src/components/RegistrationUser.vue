@@ -26,7 +26,7 @@
           <!-- Botão Upload -->
           <div class="text-center mt-2">
             <button type="button" @click="uploadImage"
-              class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition">
+              class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-black-600 transition">
               Upload
             </button>
           </div>
@@ -79,7 +79,7 @@
           <div class="flex flex-col col-span-1 gap-2 max-w-[36rem] w-full mx-auto">
             <label>CPF</label>
             <div class="flex">
-              <input type="text" id="cpf" v-model="newUser.cpf" @blur="validateCpf" :class="[
+              <input type="text" id="cpf" v-model="newUser.cpf" v-mask="'###.###.###-##'" @blur="validateCpf" :class="[
                 'w-full',
                 'campos',
                 { 'border-red-500': !isCpfValid && newUser.cpf !== '' }
@@ -97,11 +97,12 @@
             <label>Gênero</label>
             <div class="flex">
               <select v-model="newUser.genero" id="genero" class="w-full campos" required>
-                <option>Masculino</option>
-                <option>Feminino</option>
-                <option>Outro..</option>
+                <option value="" disabled selected>Selecione uma opção</option>
+                <option value="Masculino">Masculino</option>
+                <option value="Feminino">Feminino</option>
+                <option value="Outro">Outro..</option>
               </select>
-              <svg class="h-11 w-11 icons" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg class="h-11 w-11 icons ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                   d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
               </svg>
@@ -118,9 +119,10 @@
                 <path d="M2 12l1.5 -2a11 11 0 0 1 17 0l1.5 2" />
               </svg>
             </div>
+
             <label>Celular</label>
             <div class="flex">
-              <input type="text" v-model="newUser.telefone" id="telefone"
+              <input type="text" v-model="newUser.telefone" id="telefone" v-mask="'(##) #####-####'"
                 placeholder="Ex: (00) 0000-0000" class="w-full campos" required></input>
               <svg class="h-11 w-11 icons" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
                 stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -130,9 +132,13 @@
               </svg>
             </div>
           </div>
-          <span v-if="!isCpfValid && newUser.cpf !== ''" class="text-red-500">
-            CPF inválido. Por favor, verifique e tente novamente.
-          </span>
+
+          <div class="text-red-500 col-span-2">
+            <span v-if="!isCpfValid && newUser.cpf !== ''" class="text-red-500">
+              CPF inválido. Por favor, verifique e tente novamente.
+            </span>
+          </div>
+
           <div class="text-right col-span-2">
             <router-link to="/"><button class="button"><b>Voltar ao início</b></button></router-link>
             <button type="submit" class="button" @click="formAddress" :disabled="!isCpfValid"><b>Próximo
@@ -143,6 +149,7 @@
     </main>
 
     <main class="cadastroenderecos class__border__box bg-[#FFF]" v-if="isVisible">
+      
       <nav>
         <div class="flex mt-7 mb-8 border-b">
           <p class="text-[#718EBF] ml-20 mr-20">
@@ -157,6 +164,24 @@
       <form @submit.prevent="adicionarenderecos">
         <div class="registro grid md:grid-cols-2 md:gap-10 ml-10 mr-10">
           <div class="flex flex-col col-span-1 gap-2 max-w-[36rem] w-full mx-auto">
+
+            <label>CEP</label>
+            <div class="flex">
+              <input type="text" name="cep" v-model="listaEnderecos.cep" placeholder="Ex: 00000-000"
+                class="w-full campos" required>
+              </input>
+
+              <button type="button" @click="consultarCep"
+                class="h-11 w-11 bg-[#000] text-white rounded flex items-center justify-center">
+                <svg class="h-6 w-6" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                  fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <path stroke="none" d="M0 0h24v24H0z" />
+                  <path
+                    d="M11 4C6.02944 4 2 8.02944 2 12C2 15.9706 6.02944 20 11 20C13.1783 20 15.2736 19.1484 16.7424 17.9923L21.7071 22L22 21.7071L17.9923 16.7424C19.1484 15.2736 20 13.1783 20 11C20 8.02944 15.9706 4 11 4Z" />
+                </svg>
+              </button>
+            </div>
+
             <label>Nome da rua</label>
             <div class="flex">
               <input type="text" name="rua" v-model="listaEnderecos.nomeRua" placeholder="Ex: Nove de Julho"
@@ -185,22 +210,7 @@
                 <line x1="17" y1="15" x2="17" y2="15.01" />
               </svg>
             </div>
-            <label>CEP</label>
-            <div class="flex">
-              <input type="text" name="cep" v-model="listaEnderecos.cep" placeholder="Ex: 00000-000"
-                class="w-full campos" required>
-              </input>
-
-              <button type="button" @click="consultarCep"
-                class="h-11 w-11 bg-blue-500 text-white rounded flex items-center justify-center">
-                <svg class="h-6 w-6" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
-                  fill="none" stroke-linecap="round" stroke-linejoin="round">
-                  <path stroke="none" d="M0 0h24v24H0z" />
-                  <path
-                    d="M11 4C6.02944 4 2 8.02944 2 12C2 15.9706 6.02944 20 11 20C13.1783 20 15.2736 19.1484 16.7424 17.9923L21.7071 22L22 21.7071L17.9923 16.7424C19.1484 15.2736 20 13.1783 20 11C20 8.02944 15.9706 4 11 4Z" />
-                </svg>
-              </button>
-            </div>
+            
           </div>
           <div class="flex flex-col col-span-1 gap-2 max-w-[36rem] w-full mx-auto">
             <label>Complemento</label>
@@ -293,7 +303,7 @@
 .class__border__box {
   border-radius: 6px !important;
   box-shadow: 3px 5px 7px 4px #00000029 !important;
-  padding: 50px 56px 10px 55px !important;
+  padding: 60px 80px 40px 80px !important;
 }
 
 input[type="date"]::-webkit-calendar-picker-indicator {
@@ -310,7 +320,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 .cadastroenderecos form .button {
-  width: 200px;
+  width: 400px;
 }
 
 .campos {
@@ -486,7 +496,7 @@ function checkCpf(cpf) {
 
   if (rest !== parseInt(cpf.substring(9, 10))) return false;
   sum = 0;
-  
+
   for (let i = 1; i <= 10; i++) sum += parseInt(cpf.substring(i - 1, i)) * (12 - i);
   rest = (sum * 10) % 11;
 
@@ -506,7 +516,7 @@ async function consultarCep() {
       const data = await response.json();
 
       if (!data.erro) {
-        
+
         listaEnderecos.value.nomeRua = data.logradouro;
         listaEnderecos.value.bairro = data.bairro;
         listaEnderecos.value.cidade = data.localidade;
