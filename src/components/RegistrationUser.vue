@@ -120,7 +120,7 @@
             </div>
             <label>Celular</label>
             <div class="flex">
-              <input type="text" v-model="newUser.telefone" v-mask="'(##) #####-####'" id="telefone"
+              <input type="text" v-model="newUser.telefone" id="telefone"
                 placeholder="Ex: (00) 0000-0000" class="w-full campos" required></input>
               <svg class="h-11 w-11 icons" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
                 stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
