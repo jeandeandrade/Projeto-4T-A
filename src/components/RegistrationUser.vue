@@ -17,8 +17,8 @@
       <div class="registro grid md:grid-cols-5 md:gap-4 ml-5 mr-5">
         <div class="col-span-1 imgPerfil relative">
           <!-- Imagem de perfil -->
-          <img src="../assets/images/fotoPerfil.png" alt="Foto de perfil"
-            class="mx-auto rounded-full w-32 h-32 object-cover cursor-pointer">
+          <img :src="imagePreview || 'src/assets/images/fotoPerfil.png'" alt="Foto de perfil"
+            class="mx-auto rounded-full w-32 h-32 object-cover cursor-pointer" />
 
           <!-- Input de arquivo oculto -->
           <input type="file" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" @change="onFileChange" />
@@ -27,7 +27,7 @@
           <div class="text-center mt-2">
             <button type="button" @click="uploadImage"
               class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-black-600 transition">
-              Upload
+              Selecione uma imagem
             </button>
           </div>
         </div>
@@ -54,6 +54,20 @@
               </svg>
             </div>
 
+            <label>Senha</label>
+            <div class="flex">
+              <input type="password"  id="senha" placeholder="Digite a sua senha" v-model="newUser.senha"
+                class="w-full campos" required></input>
+              <svg class="h-11 w-11 icons" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+                stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" />
+                <circle cx="12" cy="12" r="2" />
+                <path d="M2 12l1.5 2a11 11 0 0 0 17 0l1.5 -2" />
+                <path d="M2 12l1.5 -2a11 11 0 0 1 17 0l1.5 2" />
+              </svg>
+            </div>
+
+            
             <label>E-mail</label>
             <div class="flex">
               <input type="email" v-model="newUser.email" id="email" placeholder="Ex: eduardo@gmail.com"
@@ -107,11 +121,12 @@
                   d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
               </svg>
             </div>
-            <label>Senha</label>
+            
+            <label>Confirme sua senha</label>
             <div class="flex">
-              <input type="password" v-model="newUser.senha" id="senha" placeholder="Ex: **********"
+              <input type="password" id="senhaConfirm" placeholder="Confirme sua senha" v-model="newUser.senhaConfirm"
                 class="w-full campos" required></input>
-              <svg class="h-11 w-11 icons" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+                <svg class="h-11 w-11 icons" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
                 stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                 <path stroke="none" d="M0 0h24v24H0z" />
                 <circle cx="12" cy="12" r="2" />
@@ -139,9 +154,17 @@
             </span>
           </div>
 
+          <div class="text-red-500 col-span-2">
+            <span v-if="!senhaMatchError && (newUser.senha !== '' && newUser.senhaConfirm !== '')" class="text-red-500">
+              Senhas não coincidem. Por favor, verifique e tente novamente.
+            </span>
+          </div>
+
+          
+
           <div class="text-right col-span-2">
             <router-link to="/"><button class="button"><b>Voltar ao início</b></button></router-link>
-            <button type="submit" class="button" @click="formAddress" :disabled="!isCpfValid"><b>Próximo
+            <button type="submit" class="button" @click="formAddress" :disabled="!isCpfValid || !senhaMatchError"><b>Próximo
                 Passo</b></button>
           </div>
         </form>
@@ -149,7 +172,7 @@
     </main>
 
     <main class="cadastroenderecos class__border__box bg-[#FFF]" v-if="isVisible">
-      
+
       <nav>
         <div class="flex mt-7 mb-8 border-b">
           <p class="text-[#718EBF] ml-20 mr-20">
@@ -210,7 +233,7 @@
                 <line x1="17" y1="15" x2="17" y2="15.01" />
               </svg>
             </div>
-            
+
           </div>
           <div class="flex flex-col col-span-1 gap-2 max-w-[36rem] w-full mx-auto">
             <label>Complemento</label>
@@ -355,18 +378,21 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 </style>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 import PostUserDataService from '@/services/PostUserDataService';
 
 const users = ref([]);
 const isVisible = ref(false);
-var newImage = ref();
+const imagePreview = ref('');
+var senhaMatchError = ref(false);
+let newImage = ref(null);
 
 const newUser = ref({
   nome: '',
   apelido: '',
   email: '',
   senha: '',
+  senhaConfirm: '',
   cpf: '',
   dataNascimento: '',
   genero: '',
@@ -374,7 +400,21 @@ const newUser = ref({
   enderecos: []
 });
 
+watch([() => newUser.value.senha, () => newUser.value.senhaConfirm], () => {
+
+  if (newUser.value.senhaConfirm !== '') {
+
+    senhaMatchError.value = newUser.value.senha == newUser.value.senhaConfirm;
+
+  } else {
+
+    senhaMatchError.value = false;
+  }
+
+});
+
 const createUser = async () => {
+
   try {
 
     const { response } = await PostUserDataService.create(newUser.value);
@@ -446,26 +486,30 @@ function onFileChange(event) {
 
   if (target && target.files && target.files.length > 0) {
 
-    newImage = target.files[0];
+    newImage.value = target.files[0];
+
+    if (newImage.value) {
+
+      imagePreview.value = URL.createObjectURL(newImage.value);
+    }
+    
   }
 
   const formData = new FormData();
-  formData.append('file', newImage);
-
+  formData.append('file', newImage.value);
 }
 
 async function uploadImage() {
 
   try {
 
-    if (!newImage) return;
+    if (!newImage.value) return;
     const formData = new FormData();
 
-    formData.append('file', newImage);
+    formData.append('file', newImage.value);
     console.log(formData);
 
     await api.post(`/profile/${productId}/UploadImage`, formData, {
-
       headers: { 'Content-Type': 'multipart/form-data' },
     });
 
@@ -502,6 +546,7 @@ function checkCpf(cpf) {
 
   if (rest === 10 || rest === 11) rest = 0;
   return rest === parseInt(cpf.substring(10, 11));
+
 }
 
 async function consultarCep() {
@@ -519,6 +564,7 @@ async function consultarCep() {
 
         listaEnderecos.value.nomeRua = data.logradouro;
         listaEnderecos.value.bairro = data.bairro;
+
         listaEnderecos.value.cidade = data.localidade;
         listaEnderecos.value.uf = data.uf;
 
