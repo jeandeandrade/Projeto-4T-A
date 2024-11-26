@@ -19,12 +19,18 @@
       <span class="text-sm text-gray-500">From</span>
       <span class="text-sm font-bold text-red-500">${{ newPrice }}</span>
     </div>
-    <button @click="openModal" class="w-full mt-4 py-2 px-4 bg-gray-800 text-white text-sm font-semibold rounded hover:bg-gray-700">
+    <button
+      @click="openModal"
+      class="w-full mt-4 py-2 px-4 bg-gray-800 text-white text-sm font-semibold rounded hover:bg-gray-700"
+    >
       See Details
     </button>
   </div>
 
-  <div v-if="modalVisible" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+  <div
+    v-if="modalVisible"
+    class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
+  >
     <div class="modal-content bg-white rounded-lg w-11/12 md:w-1/4 p-5">
       <div
         v-if="onSale"
@@ -45,13 +51,18 @@
         <span class="text-sm text-gray-500">From</span>
         <span class="text-sm font-bold text-red-500">${{ newPrice }}</span>
       </div>
-      <button @click="modalVisible = false" class="w-full mt-4 py-2 px-4 bg-gray-800 text-white text-sm font-semibold rounded hover:bg-gray-700">Fechar</button>
+      <button
+        @click="modalVisible = false"
+        class="w-full mt-4 py-2 px-4 bg-gray-800 text-white text-sm font-semibold rounded hover:bg-gray-700"
+      >
+        Fechar
+      </button>
     </div>
   </div>
 </template>
 
 <script>
-import { ref } from 'vue';
+import { ref } from "vue";
 
 export default {
   name: "ProductCard",
@@ -88,24 +99,24 @@ export default {
       modalVisible.value = false;
     };
 
-    return{
+    return {
       modalVisible,
       openModal,
       closeModal,
-    }
-  }
+    };
+  },
 };
 </script>
 
 <style scoped>
 .modal-fade-slide-enter-active,
 .modal-fade-slide-leave-active {
-    transition: opacity 0.3s ease, transform 0.3s ease;
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 .modal-fade-slide-enter-from,
 .modal-fade-slide-leave-to {
-    opacity: 0;
-    transform: translateY(-10px);
+  opacity: 0;
+  transform: translateY(-10px);
 }
 </style>

@@ -23,134 +23,13 @@
   </section>
   <section class="mt-20 m-16 p-2 bg-neutral-100 grid grid-cols-6 gap-4">
     <ProductCard
-      image="src/assets/icons/laptop.jpg"
-      title="(Product 16) Sample - Computers & Accessories"
-      :oldPrice="99.0"
-      :newPrice="49.0"
-      :onSale="true"
-    />
-    <ProductCard
-      image="src/assets/icons/LED-TV.jpg"
-      title="(Product 16) Sample - Computers & Accessories"
-      :oldPrice="99.0"
-      :newPrice="49.0"
-      :onSale="true"
-    />
-    <ProductCard
-      image="src/assets/icons/telefone.jpg"
-      title="(Product 16) Sample - Computers & Accessories"
-      :oldPrice="99.0"
-      :newPrice="49.0"
-      :onSale="true"
-    />
-    <ProductCard
-      image="src/assets/icons/laptop.jpg"
-      title="(Product 16) Sample - Computers & Accessories"
-      :oldPrice="99.0"
-      :newPrice="49.0"
-      :onSale="true"
-    />
-    <ProductCard
-      image="src/assets/icons/LED-TV.jpg"
-      title="(Product 16) Sample - Computers & Accessories"
-      :oldPrice="99.0"
-      :newPrice="49.0"
-      :onSale="false"
-    />
-    <ProductCard
-      image="src/assets/icons/telefone.jpg"
-      title="(Product 16) Sample - Computers & Accessories"
-      :oldPrice="99.0"
-      :newPrice="49.0"
-      :onSale="false"
-    />
-  </section>
-  <section class="m-16 p-2 bg-neutral-100 grid grid-cols-6 gap-4">
-    <ProductCard
-      image="src/assets/icons/laptop.jpg"
-      title="(Product 16) Sample - Computers & Accessories"
-      :oldPrice="99.0"
-      :newPrice="49.0"
-      :onSale="true"
-    />
-    <ProductCard
-      image="src/assets/icons/LED-TV.jpg"
-      title="(Product 16) Sample - Computers & Accessories"
-      :oldPrice="99.0"
-      :newPrice="49.0"
-      :onSale="true"
-    />
-    <ProductCard
-      image="src/assets/icons/telefone.jpg"
-      title="(Product 16) Sample - Computers & Accessories"
-      :oldPrice="99.0"
-      :newPrice="49.0"
-      :onSale="true"
-    />
-    <ProductCard
-      image="src/assets/icons/laptop.jpg"
-      title="(Product 16) Sample - Computers & Accessories"
-      :oldPrice="99.0"
-      :newPrice="49.0"
-      :onSale="true"
-    />
-    <ProductCard
-      image="src/assets/icons/LED-TV.jpg"
-      title="(Product 16) Sample - Computers & Accessories"
-      :oldPrice="99.0"
-      :newPrice="49.0"
-      :onSale="false"
-    />
-    <ProductCard
-      image="src/assets/icons/telefone.jpg"
-      title="(Product 16) Sample - Computers & Accessories"
-      :oldPrice="99.0"
-      :newPrice="49.0"
-      :onSale="false"
-    />
-  </section>
-  <section class="m-16 p-2 bg-neutral-100 grid grid-cols-6 gap-4">
-    <ProductCard
-      image="src/assets/icons/laptop.jpg"
-      title="(Product 16) Sample - Computers & Accessories"
-      :oldPrice="99.0"
-      :newPrice="49.0"
-      :onSale="true"
-    />
-    <ProductCard
-      image="src/assets/icons/LED-TV.jpg"
-      title="(Product 16) Sample - Computers & Accessories"
-      :oldPrice="99.0"
-      :newPrice="49.0"
-      :onSale="true"
-    />
-    <ProductCard
-      image="src/assets/icons/telefone.jpg"
-      title="(Product 16) Sample - Computers & Accessories"
-      :oldPrice="99.0"
-      :newPrice="49.0"
-      :onSale="true"
-    />
-    <ProductCard
-      image="src/assets/icons/laptop.jpg"
-      title="(Product 16) Sample - Computers & Accessories"
-      :oldPrice="99.0"
-      :newPrice="49.0"
-      :onSale="true"
-    />
-    <ProductCard
-      image="src/assets/icons/LED-TV.jpg"
-      title="(Product 16) Sample - Computers & Accessories"
-      :oldPrice="99.0"
-      :newPrice="49.0"
-      :onSale="false"
-    />
-    <ProductCard
-      image="src/assets/icons/telefone.jpg"
-      title="(Product 16) Sample - Computers & Accessories"
-      :oldPrice="99.0"
-      :newPrice="49.0"
-      :onSale="false"
+      v-for="(product, index) in products"
+      :key="index"
+      :image="product.image"
+      :title="product.title"
+      :oldPrice="product.oldPrice"
+      :newPrice="product.newPrice"
+      :onSale="product.onSale"
     />
   </section>
 </template>
@@ -162,11 +41,6 @@ export default {
   name: "ProductPage",
   components: {
     ProductCard,
-  },
-  methods: {
-    addToCart() {
-      alert(`Added ${this.title} to the cart!`);
-    },
   },
   data() {
     return {
@@ -181,17 +55,51 @@ export default {
         },
         { name: "Mobile Phones", icon: "src/assets/icons/telefone.jpg" },
       ],
+      products: [
+        {
+          image: "src/assets/icons/laptop.jpg",
+          title: "(Product 1) Laptops & Tablets",
+          oldPrice: 99.0,
+          newPrice: 49.0,
+          onSale: true,
+        },
+        {
+          image: "src/assets/icons/LED-TV.jpg",
+          title: "(Product 2) Televisions",
+          oldPrice: 99.0,
+          newPrice: 49.0,
+          onSale: true,
+        },
+        {
+          image: "src/assets/icons/telefone.jpg",
+          title: "(Product 3) PCs & Accessories",
+          oldPrice: 99.0,
+          newPrice: 49.0,
+          onSale: true,
+        },
+        {
+          image: "src/assets/icons/laptop.jpg",
+          title: "(Product 4) Laptops & Tablets",
+          oldPrice: 99.0,
+          newPrice: 49.0,
+          onSale: false,
+        },
+        {
+          image: "src/assets/icons/LED-TV.jpg",
+          title: "(Product 5) Televisions",
+          oldPrice: 99.0,
+          newPrice: 49.0,
+          onSale: false,
+        },
+        {
+          image: "src/assets/icons/telefone.jpg",
+          title: "(Product 6) Mobile Phones",
+          oldPrice: 99.0,
+          newPrice: 49.0,
+          onSale: false,
+        },
+      ],
     };
   },
 };
 </script>
-
-<style>
-.scrollbar-hide {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-.scrollbar-hide::-webkit-scrollbar {
-  display: none;
-}
-</style>
