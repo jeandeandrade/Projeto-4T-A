@@ -1,6 +1,7 @@
 <template>
-  <div class="max-w-xs border rounded-lg shadow-md p-4 relative bg-white">
-    <div
+  
+  <div class="max-w-xs border rounded-lg shadow-md p-4 relative bg-white flex flex-col">
+    <div 
       v-if="emOferta"
       class="absolute top-2 left-2 bg-red-100 text-red-500 text-xs font-semibold py-1 px-2 rounded"
     >
@@ -9,22 +10,26 @@
     <div class="flex justify-center items-center mb-4">
       <img :src="imagem" :alt="titulo" class="h-40 w-auto object-contain" />
     </div>
+    <!-- Definindo alturas mínimas para alinhar -->
     <h3
-      class="items-center justify-center text-center font-semibold text-gray-800 mb-2"
+      class="text-center font-semibold text-gray-800 mb-2 min-h-[48px]"
     >
       {{ marca }} {{ titulo }}
     </h3>
-    <p class="text-sm text-gray-500 mb-2">Categoria: {{ categoria }}</p>
-    <div class="flex items-center space-x-2">
+    <p class="text-sm text-gray-500 mb-2 min-h-[32px]">
+      Categoria: {{ categoria }}
+    </p>
+    <div class="flex items-center space-x-2 mb-4">
       <span v-if="precoDe" class="text-sm line-through text-gray-400">
         ${{ precoDe }}
       </span>
       <span class="text-sm text-gray-500">Por Apenas:</span>
       <span class="text-sm font-bold text-red-500">${{ precoPor }}</span>
     </div>
+    <!-- Garantindo que o botão fique alinhado no final -->
     <button
       @click="openModal"
-      class="w-full mt-4 py-2 px-4 bg-gray-800 text-white text-sm font-semibold rounded hover:bg-gray-700"
+      class="mt-auto py-2 px-4 bg-gray-800 text-white text-sm font-semibold rounded hover:bg-gray-700"
     >
       Ver detalhes
     </button>
@@ -80,7 +85,7 @@
       <span class="text-sm font-semibold text-gray-800"
         >Descrição detalhada do produto:</span
       >
-      <p class="text-sm text-gray-500 indent-4 mt-2">{{ descricao }}</p>
+      <p class="text-sm text-gray-500 mt-2">Produto exclusivo da Gabini Store, onde você encontra qualidade e variedade com preços imperdíveis. Aproveite agora mesmo a promoção especial: 40% de desconto em toda a loja! Não perca essa chance única de garantir os melhores produtos com economia garantida.</p>
       <div class="text-right mt-8">
         <button
           @click="modalVisible = false"
@@ -98,6 +103,8 @@
     </div>
   </div>
 </template>
+
+
 
 <script>
 import { ref } from "vue";

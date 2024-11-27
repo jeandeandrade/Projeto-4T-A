@@ -1,12 +1,13 @@
 <template>
+
   <section
     class="bg-neutral-100 mt-16 m-10 rounded-2xl md:h-[316px] px-6 shadow"
   >
     <div class="flex gap-4 items-center mb-4">
-      <h2 class="text-lg font-bold">Comprar por categorias</h2>
+      <h2 class="text-lg font-bold mt-4">Comprar por categorias</h2>
       <button
         @click="resetFilter"
-        class="text-sm text-gray-600 hover:underline"
+        class="text-sm text-gray-600 hover:underline mt-4"
       >
         Ver todos os produtos
       </button>
@@ -21,7 +22,7 @@
         <div
           class="p-16 flex items-center justify-center rounded-full bg-white shadow-md"
         >
-          <img :src="categoria.icon" alt="categoria icon" class="w-16 h-16" />
+          <img :src="categoria.icon" alt="categoria icon" class="w-16 h-16 img-categorias" />
         </div>
         <p class="text-sm font-semibold mt-2">{{ categoria.name }}</p>
       </div>
@@ -31,8 +32,9 @@
   <section class="mt-20 m-16 p-2 bg-neutral-100 grid grid-cols-6 gap-4">
     <ProductCard
       v-for="(product, index) in filteredProducts"
+
       :key="index"
-      :imagem="product.imagem"
+      :imagem="product.images[0]"
       :titulo="product.titulo"
       :marca="product.marca"
       :categoria="product.categoria"
@@ -44,9 +46,18 @@
   </section>
 </template>
 
+<style scoped>
+
+.img-categorias {
+  object-fit: cover; /* Para garantir que a imagem se ajuste bem */
+  width: 70px; /* Ajuste o tamanho conforme necessário */
+  height: 70px;
+}
+</style>
+
 <script>
-import axios from "axios";
 import ProductCard from "@/components/ProductCard.vue";
+import PostProductsDataService from "@/services/PostProductsDataService";
 
 export default {
   name: "ProductPage",
@@ -89,17 +100,17 @@ export default {
       });
     },
 
-    // Método para pegar os produtos da API
+    
     async fetchProducts() {
       try {
         console.log("Carregando produtos da API...");
-        const response = await axios.get("https://localhost:7222/api/Product");
+        const response = await PostProductsDataService.getProducts();
         console.log("Resposta da API:", response);
 
         this.products = response.data;
 
         this.filteredProducts = this.products;
-        console.log("Produtos filtrados inicializados:", this.filteredProducts);
+        console.log(this.filteredProducts);
 
         this.extractCategories();
       } catch (error) {
@@ -107,7 +118,7 @@ export default {
       }
     },
 
-    // Filtra os produtos pela categoria selecionada
+    
     filterProducts(categoriaName) {
       console.log(`Filtrando produtos pela categoria: ${categoriaName}`);
       this.filteredProducts = this.products.filter(
@@ -116,7 +127,7 @@ export default {
       console.log("Produtos filtrados:", this.filteredProducts);
     },
 
-    // Reseta o filtro para mostrar todos os produtos
+    
     resetFilter() {
       console.log("Resetando filtro...");
       this.filteredProducts = this.products;
