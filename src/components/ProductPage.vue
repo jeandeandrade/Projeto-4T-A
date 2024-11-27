@@ -13,17 +13,17 @@
     </div>
     <div class="flex gap-4 justify-between items-center mt-8 text-center">
       <div
-        v-for="(category, index) in categories"
+        v-for="(categoria, index) in categories"
         :key="index"
         class="flex flex-col items-center cursor-pointer hover:bg-gray-100 rounded-full p-2"
-        @click="filterProducts(category.name)"
+        @click="filterProducts(categoria.name)"
       >
         <div
           class="p-16 flex items-center justify-center rounded-full bg-white shadow-md"
         >
-          <img :src="category.icon" alt="category icon" class="w-16 h-16" />
+          <img :src="categoria.icon" alt="categoria icon" class="w-16 h-16" />
         </div>
-        <p class="text-sm font-semibold mt-2">{{ category.name }}</p>
+        <p class="text-sm font-semibold mt-2">{{ categoria.name }}</p>
       </div>
     </div>
   </section>
@@ -32,14 +32,14 @@
     <ProductCard
       v-for="(product, index) in filteredProducts"
       :key="index"
-      :image="product.image"
-      :title="product.title"
-      :mark="product.mark"
-      :category="product.category"
-      :oldPrice="product.oldPrice"
-      :newPrice="product.newPrice"
-      :onSale="product.onSale"
-      :description="product.description"
+      :imagem="product.imagem"
+      :titulo="product.titulo"
+      :marca="product.marca"
+      :categoria="product.categoria"
+      :precoDe="product.precoDe"
+      :precoPor="product.precoPor"
+      :emOferta="product.emOferta"
+      :descricao="product.descricao"
     />
   </section>
 </template>
@@ -66,148 +66,148 @@ export default {
       ],
       products: [
         {
-          image: "src/assets/icons/laptop.jpg",
-          title: "Mac Book Pro",
-          mark: "Apple",
-          category: "Laptops & Tablets",
-          oldPrice: 99.0,
-          newPrice: 49.0,
-          onSale: true,
+          imagem: "src/assets/icons/laptop.jpg",
+          titulo: "Mac Book Pro",
+          marca: "Apple",
+          categoria: "Laptops & Tablets",
+          precoDe: 99.0,
+          precoPor: 49.0,
+          emOferta: true,
           sku: "4145345346345",
-          description:
+          descricao:
             "A high-performance laptop suitable for all your professional and personal needs.",
         },
         {
-          image: "src/assets/icons/LED-TV.jpg",
-          title: "LED TV",
-          mark: "Samsung",
-          category: "Televisão",
-          oldPrice: 99.0,
-          newPrice: 49.0,
-          onSale: true,
+          imagem: "src/assets/icons/LED-TV.jpg",
+          titulo: "LED TV",
+          marca: "Samsung",
+          categoria: "Televisão",
+          precoDe: 99.0,
+          precoPor: 49.0,
+          emOferta: true,
           sku: "04237856789",
-          description:
+          descricao:
             "Experience stunning visuals and vibrant colors with this cutting-edge LED TV.",
         },
         {
-          image: "src/assets/icons/telefone.jpg",
-          title: "Accessories",
-          mark: "Dell",
-          category: "Mobile Phones",
-          oldPrice: 99.0,
-          newPrice: 49.0,
-          onSale: true,
+          imagem: "src/assets/icons/telefone.jpg",
+          titulo: "Accessories",
+          marca: "Dell",
+          categoria: "Mobile Phones",
+          precoDe: 99.0,
+          precoPor: 49.0,
+          emOferta: true,
           sku: "545673789",
-          description:
+          descricao:
             "Essential PC accessories to enhance your productivity and comfort.",
         },
         {
-          image: "src/assets/icons/laptop.jpg",
-          title: "Pavilion",
-          mark: "HP",
-          category: "Laptops & Tablets",
-          oldPrice: "",
-          newPrice: 49.0,
-          onSale: false,
+          imagem: "src/assets/icons/laptop.jpg",
+          titulo: "Pavilion",
+          marca: "HP",
+          categoria: "Laptops & Tablets",
+          precoDe: "",
+          precoPor: 49.0,
+          emOferta: false,
           sku: "96726587",
-          description:
+          descricao:
             "Reliable and affordable laptop for everyday tasks and entertainment.",
         },
         {
-          image: "src/assets/icons/LED-TV.jpg",
-          title: "OLED TV",
-          mark: "LG",
-          category: "Televisão",
-          oldPrice: "",
-          newPrice: 49.0,
-          onSale: false,
-          description:
+          imagem: "src/assets/icons/LED-TV.jpg",
+          titulo: "OLED TV",
+          marca: "LG",
+          categoria: "Televisão",
+          precoDe: "",
+          precoPor: 49.0,
+          emOferta: false,
+          descricao:
             "A sleek and modern television designed for ultimate viewing experience.",
           sku: "134534678",
         },
         {
-          image: "src/assets/icons/telefone.jpg",
-          title: "iPhone 12",
-          mark: "Apple",
-          category: "Mobile Phones",
-          oldPrice: "",
-          newPrice: 49.0,
-          onSale: false,
+          imagem: "src/assets/icons/telefone.jpg",
+          titulo: "iPhone 12",
+          marca: "Apple",
+          categoria: "Mobile Phones",
+          precoDe: "",
+          precoPor: 49.0,
+          emOferta: false,
           sku: "32567267",
-          description:
+          descricao:
             "Stay connected with this feature-packed and stylish mobile phone.",
         },
         {
-          image: "src/assets/icons/hometheater.jpg",
-          title: "Soundbar Bar 1000",
-          mark: "JBL",
-          category: "Audio & Video",
-          oldPrice: "",
-          newPrice: 49.0,
-          onSale: false,
+          imagem: "src/assets/icons/hometheater.jpg",
+          titulo: "Soundbar Bar 1000",
+          marca: "JBL",
+          categoria: "Audio & Video",
+          precoDe: "",
+          precoPor: 49.0,
+          emOferta: false,
           sku: "546756367",
-          description:
+          descricao:
             "Stay connected with this feature-packed and stylish mobile phone.",
         },
         {
-          image: "src/assets/icons/hometheater.jpg",
-          title: "Soundbar HW-Q990D",
-          mark: "Samsung",
-          category: "Audio & Video",
-          oldPrice: 99.0,
-          newPrice: 49.0,
-          onSale: true,
+          imagem: "src/assets/icons/hometheater.jpg",
+          titulo: "Soundbar HW-Q990D",
+          marca: "Samsung",
+          categoria: "Audio & Video",
+          precoDe: 99.0,
+          precoPor: 49.0,
+          emOferta: true,
           sku: "13294425",
-          description:
+          descricao:
             "Stay connected with this feature-packed and stylish mobile phone.",
         },
         {
-          image: "src/assets/icons/hometheater.jpg",
-          title: "Orpheus GS550",
-          mark: "Redragon",
-          category: "Audio & Video",
-          oldPrice: "",
-          newPrice: 49.0,
-          onSale: false,
+          imagem: "src/assets/icons/hometheater.jpg",
+          titulo: "Orpheus GS550",
+          marca: "Redragon",
+          categoria: "Audio & Video",
+          precoDe: "",
+          precoPor: 49.0,
+          emOferta: false,
           sku: "13294425",
 
-          description:
+          descricao:
             "Stay connected with this feature-packed and stylish mobile phone.",
         },
         {
-          image: "src/assets/icons/computador.jpg",
-          title: "Microfone QuadCast",
-          mark: "HyperX",
-          category: "Periféricos Gamer",
-          oldPrice: 99.0,
-          newPrice: 49.0,
-          onSale: true,
+          imagem: "src/assets/icons/computador.jpg",
+          titulo: "Microfone QuadCast",
+          marca: "HyperX",
+          categoria: "Periféricos Gamer",
+          precoDe: 99.0,
+          precoPor: 49.0,
+          emOferta: true,
           sku: "53470105",
-          description:
+          descricao:
             "Stay connected with this feature-packed and stylish mobile phone.",
         },
         {
-          image: "src/assets/icons/computador.jpg",
-          title: "Webcam Full HD",
-          mark: "Logitech",
-          category: "Periféricos Gamer",
-          oldPrice: 99.0,
-          newPrice: 49.0,
+          imagem: "src/assets/icons/computador.jpg",
+          titulo: "Webcam Full HD",
+          marca: "Logitech",
+          categoria: "Periféricos Gamer",
+          precoDe: 99.0,
+          precoPor: 49.0,
           sku: "01299421",
-          onSale: true,
-          description:
+          emOferta: true,
+          descricao:
             "Stay connected with this feature-packed and stylish mobile phone.",
         },
         {
-          image: "src/assets/icons/computador.jpg",
-          title: "PlayStation®VR2",
-          mark: "Sony",
-          category: "Periféricos Gamer",
-          newPrice: 49.0,
-          oldPrice: "",
+          imagem: "src/assets/icons/computador.jpg",
+          titulo: "PlayStation®VR2",
+          marca: "Sony",
+          categoria: "Periféricos Gamer",
+          precoPor: 49.0,
+          precoDe: "",
           sku: "01299421",
-          onSale: false,
-          description:
+          emOferta: false,
+          descricao:
             "Stay connected with this feature-packed and stylish mobile phone.",
         },
       ],
@@ -215,9 +215,9 @@ export default {
     };
   },
   methods: {
-    filterProducts(categoryName) {
+    filterProducts(categoriaName) {
       this.filteredProducts = this.products.filter(
-        (product) => product.category === categoryName
+        (product) => product.categoria === categoriaName
       );
     },
     // Resetar filtro para mostrar todos os produtos

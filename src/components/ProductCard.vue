@@ -1,26 +1,26 @@
 <template>
   <div class="max-w-xs border rounded-lg shadow-md p-4 relative bg-white">
     <div
-      v-if="onSale"
+      v-if="emOferta"
       class="absolute top-2 left-2 bg-red-100 text-red-500 text-xs font-semibold py-1 px-2 rounded"
     >
       Oferta
     </div>
     <div class="flex justify-center items-center mb-4">
-      <img :src="image" :alt="title" class="h-40 w-auto object-contain" />
+      <img :src="imagem" :alt="titulo" class="h-40 w-auto object-contain" />
     </div>
     <h3
       class="items-center justify-center text-center font-semibold text-gray-800 mb-2"
     >
-      {{ mark }} {{ title }}
+      {{ marca }} {{ titulo }}
     </h3>
-    <p class="text-sm text-gray-500 mb-2">Categoria: {{ category }}</p>
+    <p class="text-sm text-gray-500 mb-2">Categoria: {{ categoria }}</p>
     <div class="flex items-center space-x-2">
-      <span v-if="oldPrice" class="text-sm line-through text-gray-400">
-        ${{ oldPrice }}
+      <span v-if="precoDe" class="text-sm line-through text-gray-400">
+        ${{ precoDe }}
       </span>
       <span class="text-sm text-gray-500">Por Apenas:</span>
-      <span class="text-sm font-bold text-red-500">${{ newPrice }}</span>
+      <span class="text-sm font-bold text-red-500">${{ precoPor }}</span>
     </div>
     <button
       @click="openModal"
@@ -37,10 +37,10 @@
     <div class="modal-content bg-white rounded-lg w-11/12 md:w-2/5 p-5">
       <div class="flex justify-between">
         <h3 class="text-sm font-semibold text-gray-800 mb-2">
-          {{ title }}
+          {{ titulo }}
         </h3>
         <div
-          v-if="onSale"
+          v-if="emOferta"
           class="bg-red-100 text-red-500 text-xs font-semibold py-1 px-2 rounded"
         >
           Sale
@@ -49,32 +49,38 @@
       <div class="grid grid-cols-3">
         <div class="col-span-1">
           <div class="flex justify-center items-center mb-4">
-            <img :src="image" :alt="title" class="h-40 w-auto object-contain" />
+            <img
+              :src="imagem"
+              :alt="titulo"
+              class="h-40 w-auto object-contain"
+            />
           </div>
         </div>
         <div class="col-span-2 mt-8">
           <div class="flex items-center space-x-2 text-sm text-gray-500">
             <span>Marca:</span>
-            <span>{{ mark }}</span>
+            <span>{{ marca }}</span>
           </div>
           <div class="flex items-center space-x-2 text-sm text-gray-500">
             <span>Categoria:</span>
-            <span>{{ category }}</span>
+            <span>{{ categoria }}</span>
           </div>
           <div class="flex items-center space-x-2">
             <span class="text-sm text-gray-500">Preço:</span>
-            <span v-if="oldPrice" class="text-sm line-through text-gray-400">
-              ${{ oldPrice }}
+            <span v-if="precoDe" class="text-sm line-through text-gray-400">
+              ${{ precoDe }}
             </span>
-            <span v-if="onSale" class="text-sm text-gray-500">Por Apenas</span>
-            <span class="text-sm font-bold text-red-500">${{ newPrice }}</span>
+            <span v-if="emOferta" class="text-sm text-gray-500"
+              >Por Apenas</span
+            >
+            <span class="text-sm font-bold text-red-500">${{ precoPor }}</span>
           </div>
         </div>
       </div>
       <span class="text-sm font-semibold text-gray-800"
         >Descrição detalhada do produto:</span
       >
-      <p class="text-sm text-gray-500 indent-4 mt-2">{{ description }}</p>
+      <p class="text-sm text-gray-500 indent-4 mt-2">{{ descricao }}</p>
       <div class="text-right mt-8">
         <button
           @click="modalVisible = false"
@@ -99,35 +105,35 @@ import { ref } from "vue";
 export default {
   name: "ProductCard",
   props: {
-    image: {
+    imagem: {
       type: String,
       required: true,
     },
-    title: {
+    titulo: {
       type: String,
       required: true,
     },
-    mark: {
+    marca: {
       type: String,
       required: true,
     },
-    category: {
+    categoria: {
       type: String,
       required: true,
     },
-    oldPrice: {
+    precoDe: {
       type: Number,
       required: false,
     },
-    newPrice: {
+    precoPor: {
       type: Number,
       required: true,
     },
-    onSale: {
+    emOferta: {
       type: Boolean,
       default: false,
     },
-    description: {
+    descricao: {
       type: String,
       required: true,
     },
