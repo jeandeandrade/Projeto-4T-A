@@ -25,7 +25,7 @@
 
           <!-- Botão Upload -->
           <div class="text-center mt-2">
-            <button type="button" @click="uploadImage"
+            <button type="button"
               class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-black-600 transition">
               Selecione uma imagem
             </button>
@@ -305,8 +305,8 @@
       </div>
 
       <div class="text-right mt-14">
-        <button class="button" @click="formRegistration"><b>Voltar a etapa anterior</b></button>
-        <button class="button" @submit.prevent="createUser"><b>Salvar</b></button>
+        <button class="button" @click="formRegistration" id="btnVoltar"><b>Voltar a etapa anterior</b></button>
+        <button class="button" @click="createUser" id="btnSalvar"><b>Salvar</b></button>
       </div>
     </main>
   </div>
@@ -397,6 +397,7 @@ const newUser = ref({
   dataNascimento: '',
   genero: '',
   telefone: '',
+  imageUrl: null,
   enderecos: []
 });
 
@@ -417,16 +418,27 @@ const createUser = async () => {
 
   try {
 
-    const { response } = await PostUserDataService.create(newUser.value);
-    console.log(response);
+    const response = await PostUserDataService.create(newUser.value);
     users.value.push(response.data);
+
+    try {
+
+      await uploadImage(response.data.id);
+
+    } catch (error) {
+
+      alert(error);
+      return false;
+    }
+
+    window.location.href = '/login';
 
   } catch (error) {
 
     alert(error);
     return false;
-
   }
+  
 
 };
 
@@ -499,7 +511,7 @@ function onFileChange(event) {
   formData.append('file', newImage.value);
 }
 
-async function uploadImage() {
+async function uploadImage(userId) {
 
   try {
 
@@ -507,11 +519,15 @@ async function uploadImage() {
     const formData = new FormData();
 
     formData.append('file', newImage.value);
-    console.log(formData);
 
-    await api.post(`/profile/${productId}/UploadImage`, formData, {
-      headers: { 'Content-Type': 'multipart/form-data' },
-    });
+    try {
+      
+      const responseImage = await PostUserDataService.insertImageProfile(userId, formData);
+
+    } catch (error) {
+
+      alert('Falha ao salvar imagem do perfil');
+    }
 
   } catch (error) {
 
