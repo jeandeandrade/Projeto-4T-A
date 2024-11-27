@@ -15,7 +15,8 @@
         <div class="registro grid md:grid-cols-5 md:gap-4 ml-5 mr-5">
             <!-- Imagem de Perfil -->
             <div class="col-span-1 imgPerfil">
-                <img src="../assets/images/fotoPerfil.png" alt="" class="mx-auto p-5">
+                <img :src="`https://localhost:7222${editData?.imageUrl}`" class="mx-auto user-img" v-if="editData.imageUrl" alt="Imagem do perfil"/>
+                <img v-else src="../assets/images/fotoPerfil.png" class="user-img mx-auto p-5" alt="Imagem do perfil"/>
             </div>
 
             <div class="col-span-4 flex flex-col space-y-3">
@@ -163,15 +164,15 @@
                             </div>
                             <div>
                                 <label class="block">Apelido</label>
-                                <input type="email" v-model="editData.apelido" class="input" />
+                                <input type="text" v-model="editData.apelido" class="input" disabled style="cursor: not-allowed;" />
                             </div>
                             <div>
                                 <label class="block">Genero</label>
-                                <input type="email" v-model="editData.genero" class="input" />
+                                <input type="text" v-model="editData.genero" class="input" />
                             </div>
                             <div>
                                 <label class="block">CPF</label>
-                                <input type="email" v-model="editData.cpf" class="input" />
+                                <input type="text" v-model="editData.cpf" class="input" />
                             </div>
                             <div>
                                 <label class="block">Telefone</label>
@@ -201,7 +202,8 @@ export default {
                 dataNascimento: '',
                 cpf: '',
                 genero: '',
-                telefone: ''
+                telefone: '',
+                imageUrl: ''
             },
             enderecos: [],
             showModal: false,
@@ -296,6 +298,14 @@ export default {
 
 
 <style scoped>
+
+.user-img {
+  border-radius: 50%;
+  object-fit: cover; /* Para garantir que a imagem se ajuste bem */
+  width: 330px; /* Ajuste o tamanho conforme necessário */
+  height: 350px;
+}
+
 .button {
     color: white;
     background-color: black;

@@ -17,6 +17,11 @@ class PostUserDataService {
         return http.put("/User", data)
     }
 
+    insertImageProfile(user, data) {
+
+        return http.post("/User/" + user + "/UploadImage", data, { headers: { 'Content-Type': 'multipart/form-data' } });
+    }
+
 }
 
 export default new PostUserDataService();
