@@ -27,9 +27,12 @@
       :key="index"
       :image="product.image"
       :title="product.title"
+      :mark="product.mark"
+      :category="product.category"
       :oldPrice="product.oldPrice"
       :newPrice="product.newPrice"
       :onSale="product.onSale"
+      :description="product.description"
     />
   </section>
 </template>
@@ -59,44 +62,62 @@ export default {
         {
           image: "src/assets/icons/laptop.jpg",
           title: "(Product 1) Laptops & Tablets",
+          mark: "Apple",
+          category: "Laptops & Tablets",
           oldPrice: 99.0,
           newPrice: 49.0,
           onSale: true,
+          description: "A high-performance laptop suitable for all your professional and personal needs.",
         },
         {
           image: "src/assets/icons/LED-TV.jpg",
           title: "(Product 2) Televisions",
+          mark: "Samsung",
+          category: "Televisions",
           oldPrice: 99.0,
           newPrice: 49.0,
           onSale: true,
+          description: "Experience stunning visuals and vibrant colors with this cutting-edge LED TV.",
         },
         {
           image: "src/assets/icons/telefone.jpg",
           title: "(Product 3) PCs & Accessories",
+          mark: "Dell",
+          category: "PCs & Accessories",
           oldPrice: 99.0,
           newPrice: 49.0,
           onSale: true,
+          description: "Essential PC accessories to enhance your productivity and comfort.",
         },
         {
           image: "src/assets/icons/laptop.jpg",
           title: "(Product 4) Laptops & Tablets",
+          mark: "HP",
+          category: "Laptops & Tablets",
           oldPrice: 99.0,
           newPrice: 49.0,
           onSale: false,
+          description: "Reliable and affordable laptop for everyday tasks and entertainment.",
         },
         {
           image: "src/assets/icons/LED-TV.jpg",
           title: "(Product 5) Televisions",
+          mark: "LG",
+          category: "Televisions",
           oldPrice: 99.0,
           newPrice: 49.0,
           onSale: false,
+          description: "A sleek and modern television designed for ultimate viewing experience.",
         },
         {
           image: "src/assets/icons/telefone.jpg",
           title: "(Product 6) Mobile Phones",
+          mark: "Apple",
+          category: "Mobile Phones",
           oldPrice: 99.0,
           newPrice: 49.0,
           onSale: false,
+          description: "Stay connected with this feature-packed and stylish mobile phone.",
         },
       ],
     };
