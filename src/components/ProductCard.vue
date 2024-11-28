@@ -14,7 +14,7 @@
     <h3
       class="text-center font-semibold text-gray-800 mb-2 min-h-[48px]"
     >
-      {{ marca }} {{ titulo }}
+      {{ marca.nome }} {{ titulo }}
     </h3>
     <p class="text-sm text-gray-500 mb-2 min-h-[32px]">
       Categoria: {{ categoria }}
@@ -85,7 +85,9 @@
       <span class="text-sm font-semibold text-gray-800"
         >Descrição detalhada do produto:</span
       >
-      <p class="text-sm text-gray-500 mt-2">Produto exclusivo da Gabini Store, onde você encontra qualidade e variedade com preços imperdíveis. Aproveite agora mesmo a promoção especial: 40% de desconto em toda a loja! Não perca essa chance única de garantir os melhores produtos com economia garantida.</p>
+      <p class="text-sm text-gray-500 mt-2"> {{ descricao }}</p>
+
+      <!-- <p class="text-sm text-gray-500 mt-2">Produto exclusivo da Gabini Store, onde você encontra qualidade e variedade com preços imperdíveis. Aproveite agora mesmo a promoção especial: 40% de desconto em toda a loja! Não perca essa chance única de garantir os melhores produtos com economia garantida.</p> -->
       <div class="text-right mt-8">
         <button
           @click="modalVisible = false"

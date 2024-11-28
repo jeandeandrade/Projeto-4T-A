@@ -36,8 +36,8 @@
       :key="index"
       :imagem="product.images[0]"
       :titulo="product.titulo"
-      :marca="product.marca"
-      :categoria="product.categoria"
+      :marca="product.marca.nome"
+      :categoria="product.categoria.nome"
       :precoDe="product.precoDe"
       :precoPor="product.precoPor"
       :emOferta="product.emOferta"
@@ -84,7 +84,7 @@ export default {
       // Criar as categorias com base nos produtos
       this.categories = uniqueCategories.map((categoryId) => {
         const categoryProducts = this.products.filter(
-          (product) => product.categoriaId === categoryId
+          (product) => product.categoria.id === categoryId
         );
 
         // Pega a imagem do primeiro produto ou uma imagem padrão
@@ -94,7 +94,7 @@ export default {
 
         // Adiciona a categoria ao array
         return {
-          name: `Categoria ${categoryId}`,  // Substitua por nomes de categorias mais específicos, se possível
+          name: `${categoryProducts[0].categoria.nome}`,  // Substitua por nomes de categorias mais específicos, se possível
           icon: categoryImage, // Imagem associada à categoria
         };
       });
@@ -110,7 +110,6 @@ export default {
         this.products = response.data;
 
         this.filteredProducts = this.products;
-        console.log(this.filteredProducts);
 
         this.extractCategories();
       } catch (error) {
